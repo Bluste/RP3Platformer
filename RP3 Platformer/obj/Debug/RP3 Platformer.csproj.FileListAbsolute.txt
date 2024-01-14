@@ -8,3 +8,13 @@ C:\Users\Zvonimir\Desktop\RP3 Platformer\obj\Debug\RP3 Platformer.csproj.Generat
 C:\Users\Zvonimir\Desktop\RP3 Platformer\obj\Debug\RP3 Platformer.csproj.CoreCompileInputs.cache
 C:\Users\Zvonimir\Desktop\RP3 Platformer\obj\Debug\RP3 Platformer.exe
 C:\Users\Zvonimir\Desktop\RP3 Platformer\obj\Debug\RP3 Platformer.pdb
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\bin\Debug\RP3 Platformer.exe.config
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\bin\Debug\RP3 Platformer.exe
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\bin\Debug\RP3 Platformer.pdb
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3 Platformer.csproj.AssemblyReference.cache
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3_Platformer.Form1.resources
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3_Platformer.Properties.Resources.resources
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3 Platformer.csproj.GenerateResource.cache
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3 Platformer.csproj.CoreCompileInputs.cache
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3 Platformer.exe
+C:\Users\Zvonimir\Documents\GitHub\RP3Platformer\RP3 Platformer\obj\Debug\RP3 Platformer.pdb

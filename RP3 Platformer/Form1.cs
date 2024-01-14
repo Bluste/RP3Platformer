@@ -12,25 +12,29 @@ namespace RP3_Platformer
 {
     public partial class Form1 : Form
     {
-        bool gameStarted, isGameOver, level1Started=false;
+        bool gameStarted, isGameOver;
         Player player = new Player();
+        int currentLevel = 1;
 
         //Level 1 settings
         int level1PlayerXPosition = 60;
         int level1PlayerYPosition = 270;
 
+        //Level 1 settings
+        int level2PlayerXPosition = 40;
+        int level2PlayerYPosition = 200;
 
         public Form1()
         {
             InitializeComponent();
-
-            if (level1Started == false)
-            {
-                StartLevel(1);
-                level1Started = true;
-            }
+            GameInitialization();
         }
 
+        /// <summary>
+        /// Glavna funkcija (timer) za odvijanje igre, provjerava sve uvjete i radi potrebne promjene
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
             labelScore.Text = "Score: " + player.Score;
@@ -60,28 +64,47 @@ namespace RP3_Platformer
                 player.Force -= 1;
             }
             else if (player.JumpingTwice == true) {
-                player.JumpingSpeed = -12;
-                player.Force -= 1;
+                player.JumpingSpeed -= 12;
+                player.Force -= 2;
             }
             else
             {
-                player.JumpingSpeed = 2;
+                player.JumpingSpeed = 8;
             }
 
             foreach (Control control in this.Controls)
             {
                 if (control is PictureBox)
                 {
-                    if (control.Tag == "platform") {
-                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds)) {
+                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform")
+                    {
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds))
+                        {
                             control.BringToFront();
                             player.JumpingSpeed = 0;
                             player.Force = 8;
                             pictureBoxPlayer.Top = control.Top - pictureBoxPlayer.Height;
-                            
                         }
                     }
-                    
+                    if ((string)control.Tag == "level1coin" || (string)control.Tag == "level2coin")
+                    {
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                        {
+                            control.Visible = false;
+                            player.Score += 1;
+                        }
+                    }
+                    if ((string)control.Tag == "level1Enemy")
+                    {
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                        {
+                            player.Lives -= 1;
+                            control.Visible= false;
+                            if (player.Lives <= 0) { 
+                                isGameOver = true;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -126,6 +149,16 @@ namespace RP3_Platformer
             }
 
         }
+        /// <summary>
+        /// Funkcija koja se bavi svim postavkama na početku igre i pokreće prvi level
+        /// </summary>
+        private void GameInitialization() {
+            isGameOver = false;
+            if (currentLevel != 1)
+            {
+                StartLevel(1);
+            }
+        }
 
         /// <summary>
         /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji 
@@ -133,12 +166,15 @@ namespace RP3_Platformer
         /// </summary>
         private void StartLevel(int levelNumber)
         {
+            currentLevel = levelNumber;
+
             player.JumpingOnce = false; 
             player.JumpingTwice = false;
 
             player.MovingLeft = false;
             player.MovingRight = false;
-            isGameOver = false;
+
+            
 
             switch (levelNumber)
             {
@@ -147,10 +183,14 @@ namespace RP3_Platformer
                     player.Score = 0;
                     labelLives.Text = "Lives: " + player.Lives;
                     labelScore.Text = "Score: " + player.Score;
-
+                    
+                    //postavlja sve pictureBox-eve s tag-om "level1..." na vidljivo
                     foreach (Control control in this.Controls)
                     {
-                        if (control is PictureBox && control.Tag == "level1coin") { 
+                        if (control is PictureBox && ((string)control.Tag == "level1coin"
+                            || (string)control.Tag == "level1platform"
+                            || (string)control.Tag == "level1enemy"))
+                        { 
                             control.Visible = true;
                         }
                     }
@@ -161,6 +201,23 @@ namespace RP3_Platformer
                     break;
 
                 case 2:
+                    labelLives.Text = "Lives: " + player.Lives;
+                    labelScore.Text = "Score: " + player.Score;
+
+                    // postavlja sve pictureBox-eve s tag-om "level1..." na Visible,
+                    // zasad tako izmjenjujemo levele
+                    foreach (Control control in this.Controls)
+                    {
+                        if (control is PictureBox && ((string)control.Tag == "level2coin"
+                            || (string)control.Tag == "level2platform"
+                            || (string)control.Tag == "level2enemy"))
+                        {
+                            control.Visible = true;
+                        }
+                    }
+
+                    pictureBoxPlayer.Left = level2PlayerXPosition;
+                    pictureBoxPlayer.Top = level2PlayerYPosition;
                     break;
 
                 default:
@@ -168,7 +225,13 @@ namespace RP3_Platformer
             }
             
 
-
+        }
+        /// <summary>
+        /// Funkcija koja obavlja kraj igre i nudi mogućnost ponovne igre od prvog levela.
+        /// TODO: Dodati funkcionalnosti
+        /// </summary>
+        private void GameOver() { 
+            
         }
     }
 }

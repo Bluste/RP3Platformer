@@ -8,7 +8,7 @@ namespace RP3_Platformer
 {
     internal class Enemy
     {
-        int enemySpeed=3;
+        int movingSpeed=3;
         public Enemy() { }
 
     }

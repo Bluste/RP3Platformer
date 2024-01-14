@@ -40,7 +40,7 @@
             this.pictureBoxEnemy1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPlatform5 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPlatform6 = new System.Windows.Forms.PictureBox();
-            this.pictureEnemy2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEnemy2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPlatform8 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -72,7 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemy1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEnemy2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemy2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -112,9 +112,9 @@
             // 
             this.labelScore.BackColor = System.Drawing.Color.Transparent;
             this.labelScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelScore.Location = new System.Drawing.Point(869, 13);
+            this.labelScore.Location = new System.Drawing.Point(844, 13);
             this.labelScore.Name = "labelScore";
-            this.labelScore.Size = new System.Drawing.Size(101, 25);
+            this.labelScore.Size = new System.Drawing.Size(126, 25);
             this.labelScore.TabIndex = 1;
             this.labelScore.Text = "Score: 0";
             this.labelScore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -127,7 +127,7 @@
             this.pictureBoxPlatform1.Size = new System.Drawing.Size(100, 30);
             this.pictureBoxPlatform1.TabIndex = 2;
             this.pictureBoxPlatform1.TabStop = false;
-            this.pictureBoxPlatform1.Tag = "platform";
+            this.pictureBoxPlatform1.Tag = "level1platform";
             // 
             // pictureBoxPlatform2
             // 
@@ -137,7 +137,7 @@
             this.pictureBoxPlatform2.Size = new System.Drawing.Size(224, 30);
             this.pictureBoxPlatform2.TabIndex = 3;
             this.pictureBoxPlatform2.TabStop = false;
-            this.pictureBoxPlatform2.Tag = "platform";
+            this.pictureBoxPlatform2.Tag = "level1platform";
             // 
             // pictureBoxPlatform
             // 
@@ -147,7 +147,7 @@
             this.pictureBoxPlatform.Size = new System.Drawing.Size(100, 30);
             this.pictureBoxPlatform.TabIndex = 4;
             this.pictureBoxPlatform.TabStop = false;
-            this.pictureBoxPlatform.Tag = "platform";
+            this.pictureBoxPlatform.Tag = "level1platform";
             // 
             // pictureBoxPlatform4
             // 
@@ -157,7 +157,7 @@
             this.pictureBoxPlatform4.Size = new System.Drawing.Size(100, 30);
             this.pictureBoxPlatform4.TabIndex = 5;
             this.pictureBoxPlatform4.TabStop = false;
-            this.pictureBoxPlatform4.Tag = "platform";
+            this.pictureBoxPlatform4.Tag = "level1platform";
             // 
             // pictureBoxPlayer
             // 
@@ -179,6 +179,7 @@
             this.pictureBoxEnemy1.Size = new System.Drawing.Size(30, 37);
             this.pictureBoxEnemy1.TabIndex = 7;
             this.pictureBoxEnemy1.TabStop = false;
+            this.pictureBoxEnemy1.Tag = "level1Enemy";
             // 
             // pictureBoxPlatform5
             // 
@@ -188,7 +189,7 @@
             this.pictureBoxPlatform5.Size = new System.Drawing.Size(379, 30);
             this.pictureBoxPlatform5.TabIndex = 8;
             this.pictureBoxPlatform5.TabStop = false;
-            this.pictureBoxPlatform5.Tag = "platform";
+            this.pictureBoxPlatform5.Tag = "level1platform";
             // 
             // pictureBoxPlatform6
             // 
@@ -198,16 +199,17 @@
             this.pictureBoxPlatform6.Size = new System.Drawing.Size(224, 30);
             this.pictureBoxPlatform6.TabIndex = 9;
             this.pictureBoxPlatform6.TabStop = false;
-            this.pictureBoxPlatform6.Tag = "platform";
+            this.pictureBoxPlatform6.Tag = "level1platform";
             // 
-            // pictureEnemy2
+            // pictureBoxEnemy2
             // 
-            this.pictureEnemy2.BackColor = System.Drawing.Color.Red;
-            this.pictureEnemy2.Location = new System.Drawing.Point(745, 294);
-            this.pictureEnemy2.Name = "pictureEnemy2";
-            this.pictureEnemy2.Size = new System.Drawing.Size(30, 37);
-            this.pictureEnemy2.TabIndex = 10;
-            this.pictureEnemy2.TabStop = false;
+            this.pictureBoxEnemy2.BackColor = System.Drawing.Color.Red;
+            this.pictureBoxEnemy2.Location = new System.Drawing.Point(745, 294);
+            this.pictureBoxEnemy2.Name = "pictureBoxEnemy2";
+            this.pictureBoxEnemy2.Size = new System.Drawing.Size(30, 37);
+            this.pictureBoxEnemy2.TabIndex = 10;
+            this.pictureBoxEnemy2.TabStop = false;
+            this.pictureBoxEnemy2.Tag = "level1Enemy";
             // 
             // pictureBoxPlatform8
             // 
@@ -217,7 +219,7 @@
             this.pictureBoxPlatform8.Size = new System.Drawing.Size(224, 30);
             this.pictureBoxPlatform8.TabIndex = 11;
             this.pictureBoxPlatform8.TabStop = false;
-            this.pictureBoxPlatform8.Tag = "platform";
+            this.pictureBoxPlatform8.Tag = "level1platform";
             // 
             // pictureBoxCoin
             // 
@@ -464,7 +466,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBoxCoin);
             this.Controls.Add(this.pictureBoxPlatform8);
-            this.Controls.Add(this.pictureEnemy2);
+            this.Controls.Add(this.pictureBoxEnemy2);
             this.Controls.Add(this.pictureBoxPlatform6);
             this.Controls.Add(this.pictureBoxPlatform5);
             this.Controls.Add(this.pictureBoxEnemy1);
@@ -476,7 +478,9 @@
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.labelLives);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super Dario";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
@@ -488,7 +492,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemy1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEnemy2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemy2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -528,7 +532,7 @@
         private System.Windows.Forms.PictureBox pictureBoxEnemy1;
         private System.Windows.Forms.PictureBox pictureBoxPlatform5;
         private System.Windows.Forms.PictureBox pictureBoxPlatform6;
-        private System.Windows.Forms.PictureBox pictureEnemy2;
+        private System.Windows.Forms.PictureBox pictureBoxEnemy2;
         private System.Windows.Forms.PictureBox pictureBoxPlatform8;
         private System.Windows.Forms.PictureBox pictureBoxCoin;
         private System.Windows.Forms.PictureBox pictureBox1;

@@ -11,6 +11,13 @@ namespace RP3_Platformer
     {
         bool jumpingOnce, jumpingTwice, movingLeft, movingRight;
 
+        int jumpingSpeed;
+        int force;
+        float score = 0;
+        int lives = 10;
+        int movingSpeed = 5;
+
+        #region Getters and setters
         public bool JumpingOnce
         {
             get { return jumpingOnce; }
@@ -31,13 +38,6 @@ namespace RP3_Platformer
             get { return movingRight; }
             set { movingRight = value; }
         }
-
-        int jumpingSpeed;
-        int force;
-        float score = 0;
-        int lives = 10;
-        int movingSpeed = 5;
-
         public int JumpingSpeed
         {
             get { return jumpingSpeed; }
@@ -62,7 +62,7 @@ namespace RP3_Platformer
             get { return movingSpeed; }
             set { movingSpeed = value; }
         }
-
+        #endregion
 
         public Player()
         {
