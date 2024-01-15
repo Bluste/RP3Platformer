@@ -64,6 +64,12 @@
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.pictureBox20 = new System.Windows.Forms.PictureBox();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox30 = new System.Windows.Forms.PictureBox();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.pictureBox22 = new System.Windows.Forms.PictureBox();
+            this.pictureBox23 = new System.Windows.Forms.PictureBox();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlatform)).BeginInit();
@@ -95,6 +101,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
             this.SuspendLayout();
             // 
             // labelLives
@@ -161,10 +173,10 @@
             // 
             // pictureBoxPlayer
             // 
-            this.pictureBoxPlayer.BackColor = System.Drawing.Color.Gainsboro;
+            this.pictureBoxPlayer.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBoxPlayer.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxPlayer.Image")));
-            this.pictureBoxPlayer.Location = new System.Drawing.Point(93, 337);
+            this.pictureBoxPlayer.Location = new System.Drawing.Point(107, 333);
             this.pictureBoxPlayer.Name = "pictureBoxPlayer";
             this.pictureBoxPlayer.Size = new System.Drawing.Size(56, 50);
             this.pictureBoxPlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -214,7 +226,7 @@
             // pictureBoxPlatform8
             // 
             this.pictureBoxPlatform8.BackColor = System.Drawing.Color.SaddleBrown;
-            this.pictureBoxPlatform8.Location = new System.Drawing.Point(107, 209);
+            this.pictureBoxPlatform8.Location = new System.Drawing.Point(107, 210);
             this.pictureBoxPlatform8.Name = "pictureBoxPlatform8";
             this.pictureBoxPlatform8.Size = new System.Drawing.Size(224, 30);
             this.pictureBoxPlatform8.TabIndex = 11;
@@ -437,6 +449,68 @@
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.MainGameTimerEvent);
             // 
+            // pictureBox30
+            // 
+            this.pictureBox30.BackColor = System.Drawing.Color.SaddleBrown;
+            this.pictureBox30.Location = new System.Drawing.Point(385, 119);
+            this.pictureBox30.Name = "pictureBox30";
+            this.pictureBox30.Size = new System.Drawing.Size(224, 30);
+            this.pictureBox30.TabIndex = 33;
+            this.pictureBox30.TabStop = false;
+            this.pictureBox30.Tag = "level1platform";
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.BackColor = System.Drawing.Color.Yellow;
+            this.pictureBox21.Location = new System.Drawing.Point(569, 93);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox21.TabIndex = 36;
+            this.pictureBox21.TabStop = false;
+            this.pictureBox21.Tag = "level1coin";
+            // 
+            // pictureBox22
+            // 
+            this.pictureBox22.BackColor = System.Drawing.Color.Yellow;
+            this.pictureBox22.Location = new System.Drawing.Point(532, 93);
+            this.pictureBox22.Name = "pictureBox22";
+            this.pictureBox22.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox22.TabIndex = 35;
+            this.pictureBox22.TabStop = false;
+            this.pictureBox22.Tag = "level1coin";
+            // 
+            // pictureBox23
+            // 
+            this.pictureBox23.BackColor = System.Drawing.Color.Yellow;
+            this.pictureBox23.Location = new System.Drawing.Point(497, 93);
+            this.pictureBox23.Name = "pictureBox23";
+            this.pictureBox23.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox23.TabIndex = 34;
+            this.pictureBox23.TabStop = false;
+            this.pictureBox23.Tag = "level1coin";
+            // 
+            // pictureBox24
+            // 
+            this.pictureBox24.BackColor = System.Drawing.Color.Red;
+            this.pictureBox24.Location = new System.Drawing.Point(519, 187);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(224, 30);
+            this.pictureBox24.TabIndex = 37;
+            this.pictureBox24.TabStop = false;
+            this.pictureBox24.Tag = "level2platform";
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.BackColor = System.Drawing.Color.SandyBrown;
+            this.pictureBox25.Image = global::RP3_Platformer.Properties.Resources.brickPlatform;
+            this.pictureBox25.Location = new System.Drawing.Point(543, 284);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox25.TabIndex = 38;
+            this.pictureBox25.TabStop = false;
+            this.pictureBox25.Tag = "level1brick";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -444,6 +518,12 @@
             this.BackgroundImage = global::RP3_Platformer.Properties.Resources.pozadina1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.pictureBox25);
+            this.Controls.Add(this.pictureBox24);
+            this.Controls.Add(this.pictureBox21);
+            this.Controls.Add(this.pictureBox22);
+            this.Controls.Add(this.pictureBox23);
+            this.Controls.Add(this.pictureBox30);
             this.Controls.Add(this.pictureBox18);
             this.Controls.Add(this.pictureBox19);
             this.Controls.Add(this.pictureBox20);
@@ -515,6 +595,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -556,6 +642,12 @@
         private System.Windows.Forms.PictureBox pictureBox19;
         private System.Windows.Forms.PictureBox pictureBox20;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.PictureBox pictureBox30;
+        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.PictureBox pictureBox22;
+        private System.Windows.Forms.PictureBox pictureBox23;
+        private System.Windows.Forms.PictureBox pictureBox24;
+        private System.Windows.Forms.PictureBox pictureBox25;
     }
 }
 

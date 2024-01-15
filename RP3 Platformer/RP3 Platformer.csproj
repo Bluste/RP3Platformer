@@ -88,5 +88,8 @@
   <ItemGroup>
     <None Include="Resources\mario.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brickPlatform.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,7 @@ namespace RP3_Platformer
     {
         bool gameStarted, isGameOver;
         Player player = new Player();
+        //Petre, tu mozes dodati enemije za cijelu igru
         int currentLevel = 1;
 
         //Level 1 settings
@@ -23,7 +24,7 @@ namespace RP3_Platformer
         //Level 1 settings
         int level2PlayerXPosition = 40;
         int level2PlayerYPosition = 200;
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -63,7 +64,8 @@ namespace RP3_Platformer
                 player.JumpingSpeed = -8;
                 player.Force -= 1;
             }
-            else if (player.JumpingTwice == true) {
+            else if (player.JumpingTwice == true)
+            {
                 player.JumpingSpeed -= 12;
                 player.Force -= 2;
             }
@@ -72,6 +74,8 @@ namespace RP3_Platformer
                 player.JumpingSpeed = 8;
             }
 
+
+            //Reagiranje na dodire drugih Controls
             foreach (Control control in this.Controls)
             {
                 if (control is PictureBox)
@@ -92,16 +96,18 @@ namespace RP3_Platformer
                         {
                             control.Visible = false;
                             player.Score += 1;
+                            //Luis efekt                     }
                         }
-                    }
-                    if ((string)control.Tag == "level1Enemy")
-                    {
-                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                        if ((string)control.Tag == "level1Enemy")
                         {
-                            player.Lives -= 1;
-                            control.Visible= false;
-                            if (player.Lives <= 0) { 
-                                isGameOver = true;
+                            if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                            {
+                                player.Lives -= 1;
+                                control.Visible = false;
+                                if (player.Lives <= 0)
+                                {
+                                    isGameOver = true;
+                                }
                             }
                         }
                     }
@@ -128,6 +134,7 @@ namespace RP3_Platformer
                     player.JumpingTwice = true;
                 }
             }
+            // dodati pucanje na X
         }
 
         private void KeyIsUp(object sender, KeyEventArgs e)
@@ -179,7 +186,7 @@ namespace RP3_Platformer
             switch (levelNumber)
             {
                 case 1:
-                    player.Lives = 10;
+                    player.Lives = 3;
                     player.Score = 0;
                     labelLives.Text = "Lives: " + player.Lives;
                     labelScore.Text = "Score: " + player.Score;
@@ -213,6 +220,13 @@ namespace RP3_Platformer
                             || (string)control.Tag == "level2enemy"))
                         {
                             control.Visible = true;
+                        }
+
+                        if (control is PictureBox && ((string)control.Tag == "level1coin"
+                            || (string)control.Tag == "level1platform"
+                            || (string)control.Tag == "level1enemy"))
+                        {
+                            control.Visible = false;
                         }
                     }
 
