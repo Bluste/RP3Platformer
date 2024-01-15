@@ -12,22 +12,40 @@ namespace RP3_Platformer
 {
     public partial class Form1 : Form
     {
-        bool gameStarted, isGameOver;
+        bool gameStarted, isGameOver, playerOnThePlatform = false;
         Player player = new Player();
+        //PictureBox groundChecker;
+
         //Petre, tu mozes dodati enemije za cijelu igru
         int currentLevel = 1;
 
         //Level 1 settings
         int level1PlayerXPosition = 60;
         int level1PlayerYPosition = 270;
+        int level1HorizontalPlatformSpeed = 2;
+        int level1VerticalPlatformSpeed = 2;
+        int level1LeftStopPoint = 400;
+        int level1RightStopPoint = 650;
+        int level1BottomStopPoint = 300;
+        int level1TopStopPoint = 150;
 
         //Level 1 settings
         int level2PlayerXPosition = 40;
         int level2PlayerYPosition = 200;
-        
+
         public Form1()
         {
             InitializeComponent();
+            /*groundChecker = new PictureBox();
+            groundChecker.Name = "groundChecker";
+            groundChecker.Parent = pictureBoxPlayer;
+            groundChecker.Top = pictureBoxPlayer.Height;
+            groundChecker.Left = pictureBoxPlayer.Left;
+            groundChecker.Height = 40; 
+            groundChecker.Width=pictureBoxPlayer.Width;
+            groundChecker.BackColor = Color.Black;
+            groundChecker.Visible = true;
+            groundChecker.Enabled = true;*/
             GameInitialization();
         }
 
@@ -38,101 +56,46 @@ namespace RP3_Platformer
         /// <param name="e"></param>
         private void MainGameTimerEvent(object sender, EventArgs e)
         {
-            labelScore.Text = "Score: " + player.Score;
-            labelLives.Text = "Lives: " + player.Lives;
+            UpdateLabels();
 
-            pictureBoxPlayer.Top += player.JumpingSpeed;
+            SetGroundChecker();
 
-            if (player.MovingLeft == true && player.MovingRight == false)
-            {
-                pictureBoxPlayer.Left -= player.MovingSpeed;
-            }
-            if (player.MovingRight == true && player.MovingLeft == false)
-            {
-                pictureBoxPlayer.Left += player.MovingSpeed;
-            }
-            if (player.JumpingOnce == true && player.Force < 0)
-            {
-                player.JumpingOnce = false;
-            }
-            if (player.JumpingTwice == true && player.Force < 0)
-            {
-                player.JumpingTwice = false;
-            }
-            if (player.JumpingOnce == true)
-            {
-                player.JumpingSpeed = -8;
-                player.Force -= 1;
-            }
-            else if (player.JumpingTwice == true)
-            {
-                player.JumpingSpeed -= 12;
-                player.Force -= 2;
-            }
-            else
-            {
-                player.JumpingSpeed = 8;
-            }
+            HandleCollisions();
 
+            HandlePlayerMovement();
 
-            //Reagiranje na dodire drugih Controls
-            foreach (Control control in this.Controls)
-            {
-                if (control is PictureBox)
-                {
-                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform")
-                    {
-                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds))
-                        {
-                            control.BringToFront();
-                            player.JumpingSpeed = 0;
-                            player.Force = 8;
-                            pictureBoxPlayer.Top = control.Top - pictureBoxPlayer.Height;
-                        }
-                    }
-                    if ((string)control.Tag == "level1coin" || (string)control.Tag == "level2coin")
-                    {
-                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
-                        {
-                            control.Visible = false;
-                            player.Score += 1;
-                            //Luis efekt                     }
-                        }
-                        if ((string)control.Tag == "level1Enemy")
-                        {
-                            if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
-                            {
-                                player.Lives -= 1;
-                                control.Visible = false;
-                                if (player.Lives <= 0)
-                                {
-                                    isGameOver = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            MovePlatforms();
+
+            CheckForNewLevel();
+
+            CheckForGameOver();
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left) { 
+            if (e.KeyCode == Keys.Left) {
                 player.MovingLeft = true;
             }
-            if (e.KeyCode == Keys.Right) { 
+            if (e.KeyCode == Keys.Right) {
                 player.MovingRight = true;
             }
             if (e.KeyCode == Keys.Space) {
-                if (player.JumpingOnce == false && player.JumpingTwice == false) { 
+                if (playerOnThePlatform == true)
+                {
                     player.JumpingOnce = true;
+                    player.Force = 6;
+                }
+                else if (player.JumpingTwice == false) {
+                    player.JumpingTwice = true;
+                    player.Force += 6;
                 }
                 //poraditi na logici double jumpa
-                else if (player.JumpingOnce == true)
-                {
-                    player.JumpingOnce= false;
-                    player.JumpingTwice = true;
-                }
+
+            }
+            if (e.KeyCode == Keys.Enter && isGameOver == true)
+            {
+                Console.WriteLine("Restartiram Igru!");
+                GameInitialization();
             }
             // dodati pucanje na X
         }
@@ -147,24 +110,16 @@ namespace RP3_Platformer
             {
                 player.MovingRight = false;
             }
-            //poraditi na logici double jumpa
-            if (player.JumpingTwice == true) { 
-                player.JumpingTwice= false;
-            }
-            if (e.KeyCode == Keys.Enter && isGameOver == true) {
-                StartLevel(1);
-            }
-
         }
         /// <summary>
         /// Funkcija koja se bavi svim postavkama na početku igre i pokreće prvi level
         /// </summary>
         private void GameInitialization() {
+
             isGameOver = false;
-            if (currentLevel != 1)
-            {
-                StartLevel(1);
-            }
+            currentLevel = 1;
+            StartLevel(currentLevel);
+
         }
 
         /// <summary>
@@ -175,13 +130,13 @@ namespace RP3_Platformer
         {
             currentLevel = levelNumber;
 
-            player.JumpingOnce = false; 
+            player.JumpingOnce = false;
             player.JumpingTwice = false;
 
             player.MovingLeft = false;
             player.MovingRight = false;
 
-            
+
 
             switch (levelNumber)
             {
@@ -190,14 +145,14 @@ namespace RP3_Platformer
                     player.Score = 0;
                     labelLives.Text = "Lives: " + player.Lives;
                     labelScore.Text = "Score: " + player.Score;
-                    
+
                     //postavlja sve pictureBox-eve s tag-om "level1..." na vidljivo
                     foreach (Control control in this.Controls)
                     {
                         if (control is PictureBox && ((string)control.Tag == "level1coin"
                             || (string)control.Tag == "level1platform"
                             || (string)control.Tag == "level1enemy"))
-                        { 
+                        {
                             control.Visible = true;
                         }
                     }
@@ -212,7 +167,8 @@ namespace RP3_Platformer
                     labelScore.Text = "Score: " + player.Score;
 
                     // postavlja sve pictureBox-eve s tag-om "level1..." na Visible,
-                    // zasad tako izmjenjujemo levele
+                    // zasad tako izmjenjujemo levele,
+                    // NECE BAS DOBRO RADIT JOS JER I DALJE PROVJERAVA COLLISION S NJIMA U DRUGOM LEVELU
                     foreach (Control control in this.Controls)
                     {
                         if (control is PictureBox && ((string)control.Tag == "level2coin"
@@ -237,15 +193,168 @@ namespace RP3_Platformer
                 default:
                     break;
             }
-            
 
         }
+        /// <summary>
+        /// Updatea sve labele u igri
+        /// </summary>
+        private void UpdateLabels() {
+            labelScore.Text = "Score: " + player.Score;
+            labelLives.Text = "Lives: " + player.Lives;
+        }
+        /// <summary>
+        /// Postavlja groundChecker koji disable-a gravitaciju ako je player na platformi, rijesen problem titranja
+        /// </summary>
+        private void SetGroundChecker() {
+            groundChecker.Top = pictureBoxPlayer.Top + pictureBoxPlayer.Height;
+            groundChecker.Left = pictureBoxPlayer.Left;
+        }
+        /// <summary>
+        /// Funkcija za pomicanje Super Daria
+        /// </summary>
+        private void HandlePlayerMovement() {
+            playerOnThePlatform = false;
+            foreach (Control control in this.Controls)
+            {
+
+                if (groundChecker.Bounds.IntersectsWith(control.Bounds) && ((string)control.Tag == "level1platform" ||
+                    (string)control.Tag == "level2platform" ||
+                    (string)control.Tag == "level3platform"))
+                {
+                    playerOnThePlatform = true;
+                    break;
+                }
+            }
+
+            if (playerOnThePlatform == false || player.JumpingOnce == true)
+            {
+                pictureBoxPlayer.Top += player.JumpingSpeed;
+            }
+            else {
+                player.JumpingOnce = false;
+                player.JumpingTwice = false;
+            }
+
+            if (player.MovingLeft == true && player.MovingRight == false)
+            {
+                pictureBoxPlayer.Left -= player.MovingSpeed;
+            }
+            if (player.MovingRight == true && player.MovingLeft == false)
+            {
+                pictureBoxPlayer.Left += player.MovingSpeed;
+            }
+
+            if (player.JumpingOnce == true && player.Force < 0)
+            {
+                player.JumpingOnce = false;
+            }
+
+            if (player.JumpingOnce == true)
+            {
+                player.JumpingSpeed = -8;
+                player.Force -= 1;
+            }
+            else
+            {
+                player.JumpingSpeed = 8;
+            }
+
+        }
+        /// <summary>
+        /// Funkcija za pomicanje svih platformi u levelu. Najjednostavnija implementacija. Za dodati nove
+        /// potrebno je postaviti ogranicenje u Level Settings na pocetku skripte.
+        /// </summary>
+        private void MovePlatforms()
+        {
+            horizontalMovingPlatform.Left -= level1HorizontalPlatformSpeed;
+
+            if (horizontalMovingPlatform.Left < level1LeftStopPoint || horizontalMovingPlatform.Left > level1RightStopPoint)
+            {
+                level1HorizontalPlatformSpeed *= (-1);
+            }
+
+            verticalMovingPlatform.Top -= level1VerticalPlatformSpeed;
+
+            if (verticalMovingPlatform.Top < level1TopStopPoint || verticalMovingPlatform.Top > level1BottomStopPoint) {
+                level1VerticalPlatformSpeed *= (-1);
+            }
+
+        }
+
+        /// <summary>
+        /// Provjerava sve dodire igraca s ostalim objektima
+        /// </summary>
+        private void HandleCollisions() {
+            foreach (Control control in this.Controls)
+            {
+                if (control is PictureBox)
+                {
+
+                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform" || (string)control.Tag == "level3platform")
+                    {
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            control.BringToFront();
+                            pictureBoxPlayer.Top = control.Top - pictureBoxPlayer.Height;
+                        }
+                    }
+                    if ((string)control.Tag == "level1coin" || (string)control.Tag == "level2coin" || (string)control.Tag == "level3coin")
+                    {
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                        {
+                            control.Visible = false;
+                            player.Score += 1;
+                            //Luis efekt                     }
+                        }
+                        if ((string)control.Tag == "level1Enemy" || (string)control.Tag == "level2Enemy" || (string)control.Tag == "level3Enemy")
+                        {
+                            if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                            {
+                                player.Lives -= 1;
+                                control.Visible = false;
+                                if (player.Lives <= 0)
+                                {
+                                    isGameOver = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckForNewLevel() {
+            if (pictureBoxPlayer.Left > ClientSize.Width) {
+                Console.WriteLine("Vrijeme za novi level");
+                currentLevel++;
+                if (currentLevel >= 3) {
+                    gameTimer.Stop();
+                    MessageBox.Show("Presli ste igru!");    
+                }
+                StartLevel(currentLevel);
+            }
+        }
+
+        private void CheckForGameOver() {
+            if (pictureBoxPlayer.Top > ClientSize.Height) {
+                isGameOver = true;    
+            }
+            if (isGameOver == true) {
+                GameOver();
+            }
+        }
+
         /// <summary>
         /// Funkcija koja obavlja kraj igre i nudi mogućnost ponovne igre od prvog levela.
         /// TODO: Dodati funkcionalnosti
         /// </summary>
         private void GameOver() { 
-            
+            player.Lives = 0;
+            labelLives.Text = "Lives: 0";
+            gameTimer.Stop();
+            //Privremeni kraj igre
+            MessageBox.Show("Press Enter to play again!");
+
         }
     }
 }
