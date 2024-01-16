@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,23 +29,13 @@ namespace RP3_Platformer
         int level1BottomStopPoint = 300;
         int level1TopStopPoint = 150;
 
-        //Level 1 settings
+        //Level 2 settings
         int level2PlayerXPosition = 40;
         int level2PlayerYPosition = 200;
 
         public Form1()
         {
             InitializeComponent();
-            /*groundChecker = new PictureBox();
-            groundChecker.Name = "groundChecker";
-            groundChecker.Parent = pictureBoxPlayer;
-            groundChecker.Top = pictureBoxPlayer.Height;
-            groundChecker.Left = pictureBoxPlayer.Left;
-            groundChecker.Height = 40; 
-            groundChecker.Width=pictureBoxPlayer.Width;
-            groundChecker.BackColor = Color.Black;
-            groundChecker.Visible = true;
-            groundChecker.Enabled = true;*/
             GameInitialization();
         }
 
@@ -59,6 +49,12 @@ namespace RP3_Platformer
             UpdateLabels();
 
             SetGroundChecker();
+
+            SetCeilingChecker();
+
+            SetLeftChecker();
+
+            SetRightChecker();
 
             HandleCollisions();
 
@@ -118,12 +114,37 @@ namespace RP3_Platformer
 
             isGameOver = false;
             currentLevel = 1;
+
+            CheckerInitialization();
+
             StartLevel(currentLevel);
 
         }
 
         /// <summary>
-        /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji 
+        /// Inicijalizira provjeravače (checkere) kolizije igrača
+        /// </summary>
+        private void CheckerInitialization()
+        {
+            leftChecker.Width = 2;
+            leftChecker.Height = pictureBoxPlayer.Height - 10;
+            leftChecker.Visible = false;
+
+            rightChecker.Width = 2;
+            rightChecker.Height = pictureBoxPlayer.Height - 10;
+            rightChecker.Visible = false;
+
+            groundChecker.Width = pictureBoxPlayer.Width;
+            groundChecker.Height = 2;
+            groundChecker.Visible = false;
+
+            ceilingChecker.Width = pictureBoxPlayer.Width;
+            ceilingChecker.Height = 4;
+            ceilingChecker.Visible = false;
+        }
+
+        /// <summary>
+        /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji
         /// treba postaviti, na početku igre je level 1.
         /// </summary>
         private void StartLevel(int levelNumber)
@@ -209,6 +230,27 @@ namespace RP3_Platformer
             groundChecker.Top = pictureBoxPlayer.Top + pictureBoxPlayer.Height;
             groundChecker.Left = pictureBoxPlayer.Left;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        private void SetCeilingChecker()
+        {
+            ceilingChecker.Top = pictureBoxPlayer.Top - 5;
+            ceilingChecker.Left = pictureBoxPlayer.Left;
+        }
+
+        private void SetLeftChecker()
+        {
+            leftChecker.Top = pictureBoxPlayer.Top - 4;
+            leftChecker.Left = pictureBoxPlayer.Left - 4;
+        }
+        private void SetRightChecker()
+        {
+            rightChecker.Top = pictureBoxPlayer.Top - 4;
+            rightChecker.Left = pictureBoxPlayer.Left + pictureBoxPlayer.Width + 2;
+        }
+
         /// <summary>
         /// Funkcija za pomicanje Super Daria
         /// </summary>
@@ -219,7 +261,8 @@ namespace RP3_Platformer
 
                 if (groundChecker.Bounds.IntersectsWith(control.Bounds) && ((string)control.Tag == "level1platform" ||
                     (string)control.Tag == "level2platform" ||
-                    (string)control.Tag == "level3platform"))
+                    (string)control.Tag == "level3platform" ||
+                    (string)control.Tag == "level1brick"))
                 {
                     playerOnThePlatform = true;
                     break;
@@ -284,14 +327,39 @@ namespace RP3_Platformer
         /// <summary>
         /// Provjerava sve dodire igraca s ostalim objektima
         /// </summary>
+        ///
         private void HandleCollisions() {
+            /*if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds))
+            {
+                Console.WriteLine("cvijeticu");
+                player.JumpingOnce = false;
+                player.JumpingTwice = false;
+                player.Force = 0;
+                player.JumpingSpeed = 8;
+                //izbaci flower
+            }*/
             foreach (Control control in this.Controls)
             {
                 if (control is PictureBox)
                 {
 
-                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform" || (string)control.Tag == "level3platform")
+                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform" || (string)control.Tag == "level3platform" || (string)control.Tag == "level1brick")
                     {
+                        if (ceilingChecker.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            player.JumpingOnce = false;
+                            player.JumpingTwice = false;
+                            player.Force = 0;
+                            player.JumpingSpeed = 8;
+                        }
+                        if (leftChecker.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            player.MovingLeft = false;
+                        }
+                        if (rightChecker.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            player.MovingRight = false;
+                        }
                         if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds))
                         {
                             control.BringToFront();
@@ -329,15 +397,20 @@ namespace RP3_Platformer
                 currentLevel++;
                 if (currentLevel >= 3) {
                     gameTimer.Stop();
-                    MessageBox.Show("Presli ste igru!");    
+                    MessageBox.Show("Presli ste igru!");
                 }
                 StartLevel(currentLevel);
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void CheckForGameOver() {
             if (pictureBoxPlayer.Top > ClientSize.Height) {
-                isGameOver = true;    
+                isGameOver = true;
             }
             if (isGameOver == true) {
                 GameOver();
@@ -348,7 +421,7 @@ namespace RP3_Platformer
         /// Funkcija koja obavlja kraj igre i nudi mogućnost ponovne igre od prvog levela.
         /// TODO: Dodati funkcionalnosti
         /// </summary>
-        private void GameOver() { 
+        private void GameOver() {
             player.Lives = 0;
             labelLives.Text = "Lives: 0";
             gameTimer.Stop();
