@@ -9,9 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RP3_Platformer
-{
+{ 
     public partial class Form1 : Form
     {
+        private List<string> frames = new List<string>(new String[] {"coin1", "coin2", "coin3",
+            "coin4", "coin5"});
+
+        private int currentFrameIndex = 0;
+        private Timer animationTimer = new Timer();
+
+
         bool gameStarted, isGameOver, playerOnThePlatform = false;
         Player player = new Player();
         //PictureBox groundChecker;
@@ -20,14 +27,14 @@ namespace RP3_Platformer
         int currentLevel = 1;
 
         //Level 1 settings
-        int level1PlayerXPosition = 60;
-        int level1PlayerYPosition = 270;
+        int level1PlayerXPosition = 12;
+        int level1PlayerYPosition = 350;
         int level1HorizontalPlatformSpeed = 2;
         int level1VerticalPlatformSpeed = 2;
-        int level1LeftStopPoint = 400;
-        int level1RightStopPoint = 650;
-        int level1BottomStopPoint = 300;
-        int level1TopStopPoint = 150;
+        int level1LeftStopPoint = 212;
+        int level1RightStopPoint = 400;
+        int level1BottomStopPoint = 371;
+        int level1TopStopPoint = 290;
 
         //Level 1 settings
         int level2PlayerXPosition = 40;
@@ -120,7 +127,35 @@ namespace RP3_Platformer
             currentLevel = 1;
             StartLevel(currentLevel);
 
+            animationTimer.Interval = 20; //interval za animacije
+            animationTimer.Tick += AnimationTimer_Tick;
+
         }
+
+        // Add this event handler for the animation timer tick -LPA
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            // Update the coin picture box with the next frame
+            //coin.Image = (Image)Properties.Resources.ResourceManager.GetObject(frames[currentFrameIndex]);
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is PictureBox && control.Tag != null && control.Tag.ToString().EndsWith("coin"))
+                {
+                    // Extract the number from the PictureBox name
+                    int pictureBoxNumber;
+                    if (int.TryParse(control.Name.Replace("pictureBoxCoin", ""), out pictureBoxNumber))
+                    {
+                        // Update the coin picture box with the next frame
+                        ((PictureBox)control).Image = (Image)Properties.Resources.ResourceManager.GetObject(frames[currentFrameIndex]);
+                    }
+                }
+            }
+
+            // Move to the next frame
+            currentFrameIndex = (currentFrameIndex + 1) % frames.Count;
+        }
+
 
         /// <summary>
         /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji 
@@ -154,6 +189,11 @@ namespace RP3_Platformer
                             || (string)control.Tag == "level1enemy"))
                         {
                             control.Visible = true;
+
+                            // Start the animation timer for coins  LPA
+                            animationTimer.Start();
+
+
                         }
                     }
 
@@ -193,6 +233,7 @@ namespace RP3_Platformer
                 default:
                     break;
             }
+
 
         }
         /// <summary>
@@ -304,7 +345,9 @@ namespace RP3_Platformer
                         {
                             control.Visible = false;
                             player.Score += 1;
-                            //Luis efekt                     }
+
+                            //animation stops. treba li?
+                            //animationTimer.Stop();
                         }
                         if ((string)control.Tag == "level1Enemy" || (string)control.Tag == "level2Enemy" || (string)control.Tag == "level3Enemy")
                         {
@@ -329,15 +372,25 @@ namespace RP3_Platformer
                 currentLevel++;
                 if (currentLevel >= 3) {
                     gameTimer.Stop();
-                    MessageBox.Show("Presli ste igru!");    
+                    MessageBox.Show("Presli ste igru!");
                 }
                 StartLevel(currentLevel);
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox34_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void CheckForGameOver() {
             if (pictureBoxPlayer.Top > ClientSize.Height) {
-                isGameOver = true;    
+                isGameOver = true;
             }
             if (isGameOver == true) {
                 GameOver();
@@ -348,7 +401,7 @@ namespace RP3_Platformer
         /// Funkcija koja obavlja kraj igre i nudi mogućnost ponovne igre od prvog levela.
         /// TODO: Dodati funkcionalnosti
         /// </summary>
-        private void GameOver() { 
+        private void GameOver() {
             player.Lives = 0;
             labelLives.Text = "Lives: 0";
             gameTimer.Stop();

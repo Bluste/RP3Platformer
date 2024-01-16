@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -90,6 +91,372 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\brickPlatform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ball1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ball2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ball3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombExploding1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombExploding2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombExploding3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombLands1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombLands2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombLands3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombStart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombStart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombStart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombStart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombStart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\explosion1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\explosion2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\explosion3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\explosion4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\explosion5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flower1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flower2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flower3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flower4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioFlying8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioJumping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioStaying.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWalking9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marioWin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mush1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mush2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mush3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mush4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mush5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mush6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oneUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\peach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topo8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoEnd1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoEnd2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoHit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoHit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoHit3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\topoStart7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtle1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtle2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtle3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtle4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtle5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtleEnd1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turtleEnd2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plant1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plant2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plant3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\platform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\platform2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\platformMoving.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background1.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pipe2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
