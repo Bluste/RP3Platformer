@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace RP3_Platformer
-{ 
+{
     public partial class Form1 : Form
     {
         private List<string> frames = new List<string>(new String[] {"coin1", "coin2", "coin3",
             "coin4", "coin5"});
+
+
+        //heeeeeey!
 
         private int currentFrameIndex = 0;
         private Timer animationTimer = new Timer();
@@ -48,7 +52,7 @@ namespace RP3_Platformer
             groundChecker.Parent = pictureBoxPlayer;
             groundChecker.Top = pictureBoxPlayer.Height;
             groundChecker.Left = pictureBoxPlayer.Left;
-            groundChecker.Height = 40; 
+            groundChecker.Height = 40;
             groundChecker.Width=pictureBoxPlayer.Width;
             groundChecker.BackColor = Color.Black;
             groundChecker.Visible = true;
@@ -158,7 +162,7 @@ namespace RP3_Platformer
 
 
         /// <summary>
-        /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji 
+        /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji
         /// treba postaviti, na početku igre je level 1.
         /// </summary>
         private void StartLevel(int levelNumber)
@@ -184,9 +188,8 @@ namespace RP3_Platformer
                     //postavlja sve pictureBox-eve s tag-om "level1..." na vidljivo
                     foreach (Control control in this.Controls)
                     {
-                        if (control is PictureBox && ((string)control.Tag == "level1coin"
-                            || (string)control.Tag == "level1platform"
-                            || (string)control.Tag == "level1enemy"))
+                        if(control is PictureBox && control.Tag != null && Regex.IsMatch((string)control.Tag, @"^level1.*$"))
+                        //(control is PictureBox && ((string)control.Tag == "level1coin" || (string)control.Tag == "level1platform" || (string)control.Tag == "level1enemy"))
                         {
                             control.Visible = true;
 
@@ -411,3 +414,10 @@ namespace RP3_Platformer
         }
     }
 }
+
+
+
+
+
+
+
