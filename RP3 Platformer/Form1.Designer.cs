@@ -1,7 +1,3 @@
-
-​
-Luis Pich-Aguilera
-​
 namespace RP3_Platformer
 {
     partial class Form1
@@ -108,12 +104,12 @@ namespace RP3_Platformer
             this.pictureBoxCoin34 = new System.Windows.Forms.PictureBox();
             this.pictureBoxEnemyPlant1 = new System.Windows.Forms.PictureBox();
             this.pipePlant1 = new System.Windows.Forms.PictureBox();
-            this.pipePlant2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxEnemyPlant2 = new System.Windows.Forms.PictureBox();
             this.brick2 = new System.Windows.Forms.PictureBox();
             this.leftChecker = new System.Windows.Forms.PictureBox();
             this.rightChecker = new System.Windows.Forms.PictureBox();
             this.ceilingChecker = new System.Windows.Forms.PictureBox();
+            this.pipePlant2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).BeginInit();
@@ -185,12 +181,12 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipePlant1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pipePlant2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brick2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceilingChecker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pipePlant2)).BeginInit();
             this.SuspendLayout();
             //
             // labelLives
@@ -223,7 +219,7 @@ namespace RP3_Platformer
             this.pictureBoxPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBoxPlayer.Image = global::RP3_Platformer.Properties.Resources.marioStaying;
             this.pictureBoxPlayer.InitialImage = global::RP3_Platformer.Properties.Resources.marioStaying;
-            this.pictureBoxPlayer.Location = new System.Drawing.Point(9, 366);
+            this.pictureBoxPlayer.Location = new System.Drawing.Point(0, 366);
             this.pictureBoxPlayer.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxPlayer.Name = "pictureBoxPlayer";
             this.pictureBoxPlayer.Size = new System.Drawing.Size(42, 41);
@@ -1112,7 +1108,7 @@ namespace RP3_Platformer
             this.pictureBoxEnemyTurtle3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxEnemyTurtle3.Image = global::RP3_Platformer.Properties.Resources.turtle1;
             this.pictureBoxEnemyTurtle3.InitialImage = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle3.Location = new System.Drawing.Point(458, 366);
+            this.pictureBoxEnemyTurtle3.Location = new System.Drawing.Point(372, 365);
             this.pictureBoxEnemyTurtle3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxEnemyTurtle3.Name = "pictureBoxEnemyTurtle3";
             this.pictureBoxEnemyTurtle3.Size = new System.Drawing.Size(32, 41);
@@ -1190,59 +1186,45 @@ namespace RP3_Platformer
             this.pictureBoxEnemyPlant1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxEnemyPlant1.TabIndex = 84;
             this.pictureBoxEnemyPlant1.TabStop = false;
-            this.pictureBoxEnemyPlant1.Tag = "level1Enemy";
+            this.pictureBoxEnemyPlant1.Tag = "level1EnemyPlant";
             //
             // pipePlant1
             //
             this.pipePlant1.BackColor = System.Drawing.Color.Transparent;
-            this.pipePlant1.Image = global::RP3_Platformer.Properties.Resources.pipe2;
-            this.pipePlant1.InitialImage = global::RP3_Platformer.Properties.Resources.pipe2;
-            this.pipePlant1.Location = new System.Drawing.Point(418, 381);
+            this.pipePlant1.Image = ((System.Drawing.Image)(resources.GetObject("pipePlant1.Image")));
+            this.pipePlant1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pipePlant1.InitialImage")));
+            this.pipePlant1.Location = new System.Drawing.Point(418, 383);
             this.pipePlant1.Margin = new System.Windows.Forms.Padding(2);
             this.pipePlant1.Name = "pipePlant1";
             this.pipePlant1.Size = new System.Drawing.Size(26, 25);
             this.pipePlant1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pipePlant1.TabIndex = 85;
             this.pipePlant1.TabStop = false;
-            this.pipePlant1.Tag = "level1Pipe";
-            //
-            // pipePlant2
-            //
-            this.pipePlant2.BackColor = System.Drawing.Color.Transparent;
-            this.pipePlant2.Image = global::RP3_Platformer.Properties.Resources.pipe2;
-            this.pipePlant2.InitialImage = global::RP3_Platformer.Properties.Resources.pipe2;
-            this.pipePlant2.Location = new System.Drawing.Point(485, 173);
-            this.pipePlant2.Margin = new System.Windows.Forms.Padding(2);
-            this.pipePlant2.Name = "pipePlant2";
-            this.pipePlant2.Size = new System.Drawing.Size(26, 25);
-            this.pipePlant2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pipePlant2.TabIndex = 87;
-            this.pipePlant2.TabStop = false;
-            this.pipePlant2.Tag = "level1Pipe";
+            this.pipePlant1.Tag = "level1platform";
             //
             // pictureBoxEnemyPlant2
             //
             this.pictureBoxEnemyPlant2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxEnemyPlant2.Image = global::RP3_Platformer.Properties.Resources.plant1;
             this.pictureBoxEnemyPlant2.InitialImage = global::RP3_Platformer.Properties.Resources.plant1;
-            this.pictureBoxEnemyPlant2.Location = new System.Drawing.Point(482, 132);
+            this.pictureBoxEnemyPlant2.Location = new System.Drawing.Point(484, 135);
             this.pictureBoxEnemyPlant2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxEnemyPlant2.Name = "pictureBoxEnemyPlant2";
             this.pictureBoxEnemyPlant2.Size = new System.Drawing.Size(32, 41);
             this.pictureBoxEnemyPlant2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxEnemyPlant2.TabIndex = 86;
             this.pictureBoxEnemyPlant2.TabStop = false;
-            this.pictureBoxEnemyPlant2.Tag = "level1Enemy";
+            this.pictureBoxEnemyPlant2.Tag = "level1EnemyPlant";
             //
             // brick2
             //
             this.brick2.BackColor = System.Drawing.Color.Transparent;
             this.brick2.Image = global::RP3_Platformer.Properties.Resources.brick;
-            this.brick2.Location = new System.Drawing.Point(628, 103);
+            this.brick2.Location = new System.Drawing.Point(558, 35);
             this.brick2.Margin = new System.Windows.Forms.Padding(2);
             this.brick2.Name = "brick2";
             this.brick2.Size = new System.Drawing.Size(23, 24);
-            this.brick2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.brick2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.brick2.TabIndex = 88;
             this.brick2.TabStop = false;
             this.brick2.Tag = "level1brick";
@@ -1251,7 +1233,7 @@ namespace RP3_Platformer
             //
             this.leftChecker.BackColor = System.Drawing.Color.Transparent;
             this.leftChecker.InitialImage = null;
-            this.leftChecker.Location = new System.Drawing.Point(115, 231);
+            this.leftChecker.Location = new System.Drawing.Point(268, 405);
             this.leftChecker.Margin = new System.Windows.Forms.Padding(2);
             this.leftChecker.Name = "leftChecker";
             this.leftChecker.Size = new System.Drawing.Size(15, 43);
@@ -1265,7 +1247,7 @@ namespace RP3_Platformer
             //
             this.rightChecker.BackColor = System.Drawing.Color.Transparent;
             this.rightChecker.InitialImage = null;
-            this.rightChecker.Location = new System.Drawing.Point(160, 231);
+            this.rightChecker.Location = new System.Drawing.Point(237, 405);
             this.rightChecker.Margin = new System.Windows.Forms.Padding(2);
             this.rightChecker.Name = "rightChecker";
             this.rightChecker.Size = new System.Drawing.Size(15, 43);
@@ -1279,7 +1261,7 @@ namespace RP3_Platformer
             //
             this.ceilingChecker.BackColor = System.Drawing.Color.Transparent;
             this.ceilingChecker.InitialImage = null;
-            this.ceilingChecker.Location = new System.Drawing.Point(212, 231);
+            this.ceilingChecker.Location = new System.Drawing.Point(304, 405);
             this.ceilingChecker.Margin = new System.Windows.Forms.Padding(2);
             this.ceilingChecker.Name = "ceilingChecker";
             this.ceilingChecker.Size = new System.Drawing.Size(15, 43);
@@ -1289,6 +1271,20 @@ namespace RP3_Platformer
             this.ceilingChecker.Tag = "ceilingChecker";
             this.ceilingChecker.Visible = false;
             //
+            // pipePlant2
+            //
+            this.pipePlant2.BackColor = System.Drawing.Color.Transparent;
+            this.pipePlant2.Image = ((System.Drawing.Image)(resources.GetObject("pipePlant2.Image")));
+            this.pipePlant2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pipePlant2.InitialImage")));
+            this.pipePlant2.Location = new System.Drawing.Point(487, 174);
+            this.pipePlant2.Margin = new System.Windows.Forms.Padding(2);
+            this.pipePlant2.Name = "pipePlant2";
+            this.pipePlant2.Size = new System.Drawing.Size(26, 25);
+            this.pipePlant2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pipePlant2.TabIndex = 92;
+            this.pipePlant2.TabStop = false;
+            this.pipePlant2.Tag = "level1platform";
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1297,11 +1293,11 @@ namespace RP3_Platformer
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(736, 449);
+            this.Controls.Add(this.pipePlant2);
             this.Controls.Add(this.ceilingChecker);
             this.Controls.Add(this.rightChecker);
             this.Controls.Add(this.leftChecker);
             this.Controls.Add(this.brick2);
-            this.Controls.Add(this.pipePlant2);
             this.Controls.Add(this.pictureBoxEnemyPlant2);
             this.Controls.Add(this.pipePlant1);
             this.Controls.Add(this.pictureBoxEnemyPlant1);
@@ -1456,12 +1452,12 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipePlant1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pipePlant2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.brick2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceilingChecker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pipePlant2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1543,11 +1539,11 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox pictureBoxCoin34;
         private System.Windows.Forms.PictureBox pictureBoxEnemyPlant1;
         private System.Windows.Forms.PictureBox pipePlant1;
-        private System.Windows.Forms.PictureBox pipePlant2;
         private System.Windows.Forms.PictureBox pictureBoxEnemyPlant2;
         private System.Windows.Forms.PictureBox brick2;
         private System.Windows.Forms.PictureBox leftChecker;
         private System.Windows.Forms.PictureBox rightChecker;
         private System.Windows.Forms.PictureBox ceilingChecker;
+        private System.Windows.Forms.PictureBox pipePlant2;
     }
 }
