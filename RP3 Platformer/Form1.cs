@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -297,7 +298,7 @@ namespace RP3_Platformer
             rightChecker.Top = pictureBoxPlayer.Top - 4;
             rightChecker.Left = pictureBoxPlayer.Left + pictureBoxPlayer.Width + 2;
         }
-
+       
         /// <summary>
         /// Funkcija za pomicanje Super Daria
         /// </summary>
@@ -481,10 +482,3 @@ namespace RP3_Platformer
         }
     }
 }
-
-
-
-
-
-
-
