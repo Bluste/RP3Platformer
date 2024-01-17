@@ -7,11 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace RP3_Platformer
 {
     public partial class Form1 : Form
     {
+        private List<string> Coinframes = new List<string>(new String[] {"coin1", "coin2", "coin3",
+            "coin4", "coin5"});
+
+        private List<string> Plantframes = new List<string>(new String[] { "plant1", "plant2", "plant3" });
+
+        //heeeeeey!
+
+        private int currentFrameIndex = 0;
+        private Timer animationTimer = new Timer();
+
+
         bool gameStarted, isGameOver, playerOnThePlatform = false;
         Player player = new Player();
         //PictureBox groundChecker;
@@ -20,14 +32,21 @@ namespace RP3_Platformer
         int currentLevel = 1;
 
         //Level 1 settings
-        int level1PlayerXPosition = 60;
-        int level1PlayerYPosition = 270;
+        int level1PlayerXPosition = 12;
+        int level1PlayerYPosition = 350;
         int level1HorizontalPlatformSpeed = 2;
         int level1VerticalPlatformSpeed = 2;
-        int level1LeftStopPoint = 400;
-        int level1RightStopPoint = 650;
-        int level1BottomStopPoint = 300;
-        int level1TopStopPoint = 150;
+        int level1LeftStopPoint = 212;
+        int level1RightStopPoint = 400;
+        int level1BottomStopPoint = 371;
+        int level1TopStopPoint = 290;
+
+        int turtlespeed1 = 3;
+        int turtlespeed2 = 3;
+        int turtlespeed3 = 3;
+        int turtlespeed4 = 3;
+
+        bool cooldown = false;
 
         //Level 2 settings
         int level2PlayerXPosition = 40;
@@ -36,6 +55,7 @@ namespace RP3_Platformer
         public Form1()
         {
             InitializeComponent();
+
             GameInitialization();
         }
 
@@ -62,6 +82,8 @@ namespace RP3_Platformer
 
             MovePlatforms();
 
+            MoveTurtles();
+
             CheckForNewLevel();
 
             CheckForGameOver();
@@ -69,19 +91,23 @@ namespace RP3_Platformer
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left) {
+            if (e.KeyCode == Keys.Left)
+            {
                 player.MovingLeft = true;
             }
-            if (e.KeyCode == Keys.Right) {
+            if (e.KeyCode == Keys.Right)
+            {
                 player.MovingRight = true;
             }
-            if (e.KeyCode == Keys.Space) {
+            if (e.KeyCode == Keys.Space)
+            {
                 if (playerOnThePlatform == true)
                 {
                     player.JumpingOnce = true;
                     player.Force = 6;
                 }
-                else if (player.JumpingTwice == false) {
+                else if (player.JumpingTwice == false)
+                {
                     player.JumpingTwice = true;
                     player.Force += 6;
                 }
@@ -110,7 +136,8 @@ namespace RP3_Platformer
         /// <summary>
         /// Funkcija koja se bavi svim postavkama na početku igre i pokreće prvi level
         /// </summary>
-        private void GameInitialization() {
+        private void GameInitialization()
+        {
 
             isGameOver = false;
             currentLevel = 1;
@@ -119,9 +146,55 @@ namespace RP3_Platformer
 
             StartLevel(currentLevel);
 
+            animationTimer.Interval = 150; //interval za animacije
+            animationTimer.Tick += AnimationTimer_Tick;
+
         }
 
+        // Add this event handler for the animation timer tick -LPA
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            // Update the coin picture box with the next frame
+            //coin.Image = (Image)Properties.Resources.ResourceManager.GetObject(frames[currentFrameIndex]);
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is PictureBox && control.Tag != null && control.Tag.ToString().EndsWith("coin"))
+                {
+                    // Extract the number from the PictureBox name
+                    int pictureBoxNumber;
+                    // Move to the next frame
+                    currentFrameIndex = (currentFrameIndex + 1) % Coinframes.Count;
+                    if (int.TryParse(control.Name.Replace("pictureBoxCoin", ""), out pictureBoxNumber))
+                    {
+                        // Update the coin picture box with the next frame
+                        ((PictureBox)control).Image = (Image)Properties.Resources.ResourceManager.GetObject(Coinframes[currentFrameIndex]);
+                    }
+                }
+
+                if (control is PictureBox && control.Tag != null && control.Tag.ToString().EndsWith("Plant"))
+                {
+                    // Extract the number from the PictureBox name
+                    int plantNumber;
+                    // Move to the next frame
+                    currentFrameIndex = (currentFrameIndex + 1) % Plantframes.Count;
+                    if (int.TryParse(control.Name.Replace("pictureBoxEnemyPlant", ""), out plantNumber))
+                    {
+                        // Update the plant picture with the next frame
+                        ((PictureBox)control).Image = (Image)Properties.Resources.ResourceManager.GetObject(Plantframes[currentFrameIndex]);
+                    }
+                }
+
+
+            }
+
+
+        }
+
+
         /// <summary>
+
+
         /// Inicijalizira provjeravače (checkere) kolizije igrača
         /// </summary>
         private void CheckerInitialization()
@@ -170,11 +243,15 @@ namespace RP3_Platformer
                     //postavlja sve pictureBox-eve s tag-om "level1..." na vidljivo
                     foreach (Control control in this.Controls)
                     {
-                        if (control is PictureBox && ((string)control.Tag == "level1coin"
-                            || (string)control.Tag == "level1platform"
-                            || (string)control.Tag == "level1enemy"))
+                        if (control is PictureBox && control.Tag != null && Regex.IsMatch((string)control.Tag, @"^level1.*$"))
+                        //(control is PictureBox && ((string)control.Tag == "level1coin" || (string)control.Tag == "level1platform" || (string)control.Tag == "level1enemy"))
                         {
                             control.Visible = true;
+
+                            // Start the animation timer for coins  LPA
+                            animationTimer.Start();
+
+
                         }
                     }
 
@@ -215,18 +292,21 @@ namespace RP3_Platformer
                     break;
             }
 
+
         }
         /// <summary>
         /// Updatea sve labele u igri
         /// </summary>
-        private void UpdateLabels() {
+        private void UpdateLabels()
+        {
             labelScore.Text = "Score: " + player.Score;
             labelLives.Text = "Lives: " + player.Lives;
         }
         /// <summary>
         /// Postavlja groundChecker koji disable-a gravitaciju ako je player na platformi, rijesen problem titranja
         /// </summary>
-        private void SetGroundChecker() {
+        private void SetGroundChecker()
+        {
             groundChecker.Top = pictureBoxPlayer.Top + pictureBoxPlayer.Height;
             groundChecker.Left = pictureBoxPlayer.Left;
         }
@@ -236,7 +316,7 @@ namespace RP3_Platformer
         /// </summary>
         private void SetCeilingChecker()
         {
-            ceilingChecker.Top = pictureBoxPlayer.Top - 5;
+            ceilingChecker.Top = pictureBoxPlayer.Top - 8;
             ceilingChecker.Left = pictureBoxPlayer.Left;
         }
 
@@ -254,7 +334,8 @@ namespace RP3_Platformer
         /// <summary>
         /// Funkcija za pomicanje Super Daria
         /// </summary>
-        private void HandlePlayerMovement() {
+        private void HandlePlayerMovement()
+        {
             playerOnThePlatform = false;
             foreach (Control control in this.Controls)
             {
@@ -273,7 +354,8 @@ namespace RP3_Platformer
             {
                 pictureBoxPlayer.Top += player.JumpingSpeed;
             }
-            else {
+            else
+            {
                 player.JumpingOnce = false;
                 player.JumpingTwice = false;
             }
@@ -318,17 +400,47 @@ namespace RP3_Platformer
 
             verticalMovingPlatform.Top -= level1VerticalPlatformSpeed;
 
-            if (verticalMovingPlatform.Top < level1TopStopPoint || verticalMovingPlatform.Top > level1BottomStopPoint) {
+            if (verticalMovingPlatform.Top < level1TopStopPoint || verticalMovingPlatform.Top > level1BottomStopPoint)
+            {
                 level1VerticalPlatformSpeed *= (-1);
             }
 
         }
 
         /// <summary>
+        /// Pomiče kornjače
+        /// </summary>
+        private void MoveTurtles()
+        {
+            pictureBoxEnemyTurtle1.Left += turtlespeed1;
+            if (pictureBoxEnemyTurtle1.Bounds.IntersectsWith(turtleStopper1_R.Bounds) || pictureBoxEnemyTurtle1.Bounds.IntersectsWith(turtleStopper1_L.Bounds))
+            {
+                turtlespeed1 *= (-1);
+            }
+            pictureBoxEnemyTurtle2.Left += turtlespeed2;
+            if (pictureBoxEnemyTurtle2.Bounds.IntersectsWith(turtleStopper2_R.Bounds) || pictureBoxEnemyTurtle2.Bounds.IntersectsWith(turtleStopper2_L.Bounds))
+            {
+                turtlespeed2 *= (-1);
+            }
+            pictureBoxEnemyTurtle3.Left += turtlespeed3;
+            if (pictureBoxEnemyTurtle3.Bounds.IntersectsWith(turtleStopper3_R.Bounds) || pictureBoxEnemyTurtle3.Bounds.IntersectsWith(turtleStopper3_L.Bounds))
+            {
+                turtlespeed3 *= (-1);
+            }
+            pictureBoxEnemyTurtle4.Left += turtlespeed4;
+            if (pictureBoxEnemyTurtle4.Bounds.IntersectsWith(turtleStopper4_R.Bounds) || pictureBoxEnemyTurtle4.Bounds.IntersectsWith(turtleStopper4_L.Bounds))
+            {
+                turtlespeed4 *= (-1);
+            }
+        }
+
+
+        /// <summary>
         /// Provjerava sve dodire igraca s ostalim objektima
         /// </summary>
         ///
-        private void HandleCollisions() {
+        private void HandleCollisions()
+        {
             /*if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds))
             {
                 Console.WriteLine("cvijeticu");
@@ -372,7 +484,9 @@ namespace RP3_Platformer
                         {
                             control.Visible = false;
                             player.Score += 1;
-                            //Luis efekt                     }
+
+                            //animation stops. treba li?
+                            //animationTimer.Stop();
                         }
                         if ((string)control.Tag == "level1Enemy" || (string)control.Tag == "level2Enemy" || (string)control.Tag == "level3Enemy")
                         {
@@ -387,15 +501,40 @@ namespace RP3_Platformer
                             }
                         }
                     }
+                    if ((string)control.Tag == "level1EnemyTurtle" || (string)control.Tag == "level2EnemyTurtle" || (string)control.Tag == "level3EnemyTurtle")
+                    {
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown)
+                        {
+                            player.Lives -= 1;
+                            //control.Visible = false;
+                            if (player.Lives <= 0)
+                            {
+                                isGameOver = true;
+                            }
+                            cooldown = true;
+                            Timer cooldownTimer = new Timer();
+                            cooldownTimer.Interval = 3000;   //3 sekunde cooldowna?
+                            cooldownTimer.Tick += (sender, e) =>
+                            {
+                                cooldown = false;
+                                cooldownTimer.Stop();
+                                cooldownTimer.Dispose();
+                            };
+                            cooldownTimer.Start();
+                        }
+                    }
                 }
             }
         }
 
-        private void CheckForNewLevel() {
-            if (pictureBoxPlayer.Left > ClientSize.Width) {
+        private void CheckForNewLevel()
+        {
+            if (pictureBoxPlayer.Left > ClientSize.Width)
+            {
                 Console.WriteLine("Vrijeme za novi level");
                 currentLevel++;
-                if (currentLevel >= 3) {
+                if (currentLevel >= 3)
+                {
                     gameTimer.Stop();
                     MessageBox.Show("Presli ste igru!");
                 }
@@ -407,12 +546,14 @@ namespace RP3_Platformer
         {
 
         }
-
-        private void CheckForGameOver() {
-            if (pictureBoxPlayer.Top > ClientSize.Height) {
+        private void CheckForGameOver()
+        {
+            if (pictureBoxPlayer.Top > ClientSize.Height)
+            {
                 isGameOver = true;
             }
-            if (isGameOver == true) {
+            if (isGameOver == true)
+            {
                 GameOver();
             }
         }
@@ -421,7 +562,8 @@ namespace RP3_Platformer
         /// Funkcija koja obavlja kraj igre i nudi mogućnost ponovne igre od prvog levela.
         /// TODO: Dodati funkcionalnosti
         /// </summary>
-        private void GameOver() {
+        private void GameOver()
+        {
             player.Lives = 0;
             labelLives.Text = "Lives: 0";
             gameTimer.Stop();
