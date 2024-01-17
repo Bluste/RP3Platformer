@@ -1,4 +1,5 @@
-﻿namespace RP3_Platformer
+
+namespace RP3_Platformer
 {
     partial class Form1
     {
@@ -1405,7 +1406,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.brick2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
+            this.PerformLayout
+       
 
         }
 
@@ -1490,4 +1492,3 @@
         private System.Windows.Forms.PictureBox brick2;
     }
 }
-

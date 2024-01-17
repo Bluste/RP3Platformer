@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,23 +40,14 @@ namespace RP3_Platformer
         int level1BottomStopPoint = 371;
         int level1TopStopPoint = 290;
 
-        //Level 1 settings
+        //Level 2 settings
         int level2PlayerXPosition = 40;
         int level2PlayerYPosition = 200;
 
         public Form1()
         {
             InitializeComponent();
-            /*groundChecker = new PictureBox();
-            groundChecker.Name = "groundChecker";
-            groundChecker.Parent = pictureBoxPlayer;
-            groundChecker.Top = pictureBoxPlayer.Height;
-            groundChecker.Left = pictureBoxPlayer.Left;
-            groundChecker.Height = 40;
-            groundChecker.Width=pictureBoxPlayer.Width;
-            groundChecker.BackColor = Color.Black;
-            groundChecker.Visible = true;
-            groundChecker.Enabled = true;*/
+
             GameInitialization();
         }
 
@@ -70,6 +61,12 @@ namespace RP3_Platformer
             UpdateLabels();
 
             SetGroundChecker();
+
+            SetCeilingChecker();
+
+            SetLeftChecker();
+
+            SetRightChecker();
 
             HandleCollisions();
 
@@ -129,6 +126,9 @@ namespace RP3_Platformer
 
             isGameOver = false;
             currentLevel = 1;
+
+            CheckerInitialization();
+
             StartLevel(currentLevel);
 
             animationTimer.Interval = 20; //interval za animacije
@@ -160,6 +160,30 @@ namespace RP3_Platformer
             currentFrameIndex = (currentFrameIndex + 1) % frames.Count;
         }
 
+
+        /// <summary>
+
+
+        /// Inicijalizira provjeravače (checkere) kolizije igrača
+        /// </summary>
+        private void CheckerInitialization()
+        {
+            leftChecker.Width = 2;
+            leftChecker.Height = pictureBoxPlayer.Height - 10;
+            leftChecker.Visible = false;
+
+            rightChecker.Width = 2;
+            rightChecker.Height = pictureBoxPlayer.Height - 10;
+            rightChecker.Visible = false;
+
+            groundChecker.Width = pictureBoxPlayer.Width;
+            groundChecker.Height = 2;
+            groundChecker.Visible = false;
+
+            ceilingChecker.Width = pictureBoxPlayer.Width;
+            ceilingChecker.Height = 4;
+            ceilingChecker.Visible = false;
+        }
 
         /// <summary>
         /// Funkcija namijenjena postavljanju levela, kao parametar prima broj levela koji
@@ -253,6 +277,27 @@ namespace RP3_Platformer
             groundChecker.Top = pictureBoxPlayer.Top + pictureBoxPlayer.Height;
             groundChecker.Left = pictureBoxPlayer.Left;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        private void SetCeilingChecker()
+        {
+            ceilingChecker.Top = pictureBoxPlayer.Top - 5;
+            ceilingChecker.Left = pictureBoxPlayer.Left;
+        }
+
+        private void SetLeftChecker()
+        {
+            leftChecker.Top = pictureBoxPlayer.Top - 4;
+            leftChecker.Left = pictureBoxPlayer.Left - 4;
+        }
+        private void SetRightChecker()
+        {
+            rightChecker.Top = pictureBoxPlayer.Top - 4;
+            rightChecker.Left = pictureBoxPlayer.Left + pictureBoxPlayer.Width + 2;
+        }
+
         /// <summary>
         /// Funkcija za pomicanje Super Daria
         /// </summary>
@@ -263,7 +308,8 @@ namespace RP3_Platformer
 
                 if (groundChecker.Bounds.IntersectsWith(control.Bounds) && ((string)control.Tag == "level1platform" ||
                     (string)control.Tag == "level2platform" ||
-                    (string)control.Tag == "level3platform"))
+                    (string)control.Tag == "level3platform" ||
+                    (string)control.Tag == "level1brick"))
                 {
                     playerOnThePlatform = true;
                     break;
@@ -328,14 +374,39 @@ namespace RP3_Platformer
         /// <summary>
         /// Provjerava sve dodire igraca s ostalim objektima
         /// </summary>
+        ///
         private void HandleCollisions() {
+            /*if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds))
+            {
+                Console.WriteLine("cvijeticu");
+                player.JumpingOnce = false;
+                player.JumpingTwice = false;
+                player.Force = 0;
+                player.JumpingSpeed = 8;
+                //izbaci flower
+            }*/
             foreach (Control control in this.Controls)
             {
                 if (control is PictureBox)
                 {
 
-                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform" || (string)control.Tag == "level3platform")
+                    if ((string)control.Tag == "level1platform" || (string)control.Tag == "level2platform" || (string)control.Tag == "level3platform" || (string)control.Tag == "level1brick")
                     {
+                        if (ceilingChecker.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            player.JumpingOnce = false;
+                            player.JumpingTwice = false;
+                            player.Force = 0;
+                            player.JumpingSpeed = 8;
+                        }
+                        if (leftChecker.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            player.MovingLeft = false;
+                        }
+                        if (rightChecker.Bounds.IntersectsWith(control.Bounds))
+                        {
+                            player.MovingRight = false;
+                        }
                         if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds))
                         {
                             control.BringToFront();
@@ -386,10 +457,6 @@ namespace RP3_Platformer
 
         }
 
-        private void pictureBox34_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void CheckForGameOver() {
             if (pictureBoxPlayer.Top > ClientSize.Height) {
