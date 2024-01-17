@@ -284,7 +284,7 @@ namespace RP3_Platformer
         /// </summary>
         private void SetCeilingChecker()
         {
-            ceilingChecker.Top = pictureBoxPlayer.Top - 5;
+            ceilingChecker.Top = pictureBoxPlayer.Top - 8;
             ceilingChecker.Left = pictureBoxPlayer.Left;
         }
 
