@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 namespace RP3_Platformer
 {
@@ -18,9 +19,16 @@ namespace RP3_Platformer
 
         private List<string> Plantframes = new List<string>(new String[] { "plant1", "plant2", "plant3" });
 
+        private List<string> Turtleframes = new List<string>(new string[] { "turtle1", "turtle2", "turtle3", "turtle4", "turtle5" });
+        private List<int> turtleCurrentFrameIndices = new List<int>();
+        private List<PictureBox> turtlePictureBoxes = new List<PictureBox>();
+        private List<PictureBox> turtleStopperBoxes_R = new List<PictureBox>();
+        private List<PictureBox> turtleStopperBoxes_L = new List<PictureBox>();
+
         //heeeeeey!
 
-        private int currentFrameIndex = 0;
+        private int currentCoinFrameIndex = 0;
+        private int currentPlantFrameIndex = 0;
         private Timer animationTimer = new Timer();
 
 
@@ -41,10 +49,14 @@ namespace RP3_Platformer
         int level1BottomStopPoint = 371;
         int level1TopStopPoint = 290;
 
-        int turtlespeed1 = 3;
-        int turtlespeed2 = 3;
-        int turtlespeed3 = 3;
-        int turtlespeed4 = 3;
+        int[] turtlespeed = { 1, 1, 1, 1 };
+        /*PictureBox[] pictureBoxEnemyTurtle = {pictureBoxEnemyTurtle1, pictureBoxEnemyTurtle1,
+            pictureBoxEnemyTurtle1, pictureBoxEnemyTurtle1};*/
+
+        //int turtlespeed1 = 3;
+        //int turtlespeed2 = 3;
+        //int turtlespeed3 = 3;
+        //int turtlespeed4 = 3;
 
         int plantspeed1 = 2;
         int plantspeed2 = 2;
@@ -178,6 +190,122 @@ namespace RP3_Platformer
             shield1.Visible = false;
             realShield1.SendToBack();
 
+            //inicijalziramo turtlePictureBoxes
+            for (int i = 0; i < 4; i++)
+            {
+                PictureBox turtlePictureBox = new PictureBox();
+                turtlePictureBoxes.Add(turtlePictureBox);
+                turtleCurrentFrameIndices.Add(0);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                // Create and add turtle stoppers
+                PictureBox turtleStopper_R = new PictureBox();
+                PictureBox turtleStopper_L = new PictureBox();
+                turtleStopperBoxes_R.Add(turtleStopper_R);
+                turtleStopperBoxes_L.Add(turtleStopper_L);
+
+                turtleStopper_R.Size = turtleStopper_L.Size = new Size(20, 53); // Adjust size as needed
+            }
+
+            AdjustTurtleLocation(turtlePictureBoxes[0], turtleStopperBoxes_R[0], turtleStopperBoxes_L[0]);
+        }
+
+        private void AdjustTurtleLocation(PictureBox turtlePictureBox, PictureBox turtleStopper_R, PictureBox turtleStopper_L)
+        {
+            int sizeY = turtlePictureBox.Size.Height;
+
+            // prva kornjaca
+
+            Control platform1_1Control = this.Controls.Find("platform1_1", true).FirstOrDefault();
+            Control platform1_5Control = this.Controls.Find("platform1_5", true).FirstOrDefault();
+
+
+            Control platform2_1Control = this.Controls.Find("platform2_1", true).FirstOrDefault();
+            Control platform2_5Control = this.Controls.Find("platform2_5", true).FirstOrDefault();
+
+
+            Control floor1Control = this.Controls.Find("floor1", true).FirstOrDefault();
+            Control floorStop = this.Controls.Find("pipePlant1", true).FirstOrDefault();
+
+
+            Control platform5_1Control = this.Controls.Find("platform5_1", true).FirstOrDefault();
+            Control platform5_5Control = this.Controls.Find("platform5_5", true).FirstOrDefault();
+
+
+
+            if (platform1_1Control != null && platform1_1Control is PictureBox)
+            {
+                Point platform1_1Location = new Point(((PictureBox)platform1_1Control).Location.X, ((PictureBox)platform1_1Control).Location.Y - sizeY);
+                Point platform1_5Location = new Point(((PictureBox)platform1_5Control).Location.X, ((PictureBox)platform1_5Control).Location.Y - sizeY);
+
+                SetTurtleLocation(turtlePictureBoxes[0], turtleStopperBoxes_R[0], turtleStopperBoxes_L[0], platform1_1Location, platform1_5Location, 1);
+            }
+
+            if (platform2_1Control != null && platform2_1Control is PictureBox)
+            {
+                Point platform2_1Location = new Point(((PictureBox)platform2_1Control).Location.X, ((PictureBox)platform2_1Control).Location.Y - sizeY);
+                Point platform2_5Location = new Point(((PictureBox)platform2_5Control).Location.X, ((PictureBox)platform2_5Control).Location.Y - sizeY);
+
+                SetTurtleLocation(turtlePictureBoxes[1], turtleStopperBoxes_R[1], turtleStopperBoxes_L[1], platform2_1Location, platform2_5Location, 2);
+            }
+
+            if (floor1Control != null && floor1Control is PictureBox)
+            {
+                Point floor1Location = new Point(((PictureBox)platform2_1Control).Location.X, ((PictureBox)floor1Control).Location.Y - sizeY); // Use the Y component, X from platform1_1
+                Point stopFloorLocation = new Point(((PictureBox)floorStop).Location.X, ((PictureBox)floorStop).Location.Y - sizeY);
+
+                SetTurtleLocation(turtlePictureBoxes[2], turtleStopperBoxes_R[2], turtleStopperBoxes_L[2], floor1Location, stopFloorLocation, 3);
+            }
+
+            if (platform5_1Control != null && platform5_1Control is PictureBox)
+            {
+                Point platform5_1Location = new Point(((PictureBox)platform5_1Control).Location.X, ((PictureBox)platform5_1Control).Location.Y - sizeY);
+                Point platform5_5Location = new Point(((PictureBox)platform5_5Control).Location.X, ((PictureBox)platform5_5Control).Location.Y - sizeY);
+
+                SetTurtleLocation(turtlePictureBoxes[3], turtleStopperBoxes_R[3], turtleStopperBoxes_L[3], platform5_1Location, platform5_5Location, 4);
+            }
+        }
+        /// <summary>
+        /// kreira kornjace
+        /// </summary>
+        private void SetTurtleLocation(PictureBox turtlePictureBox, PictureBox turtleStopper_R, PictureBox turtleStopper_L, Point location, Point locationLastPlatform, int turtleNumber)
+        {
+            turtlePictureBox.Size = new Size(43, 50);//35,40
+            turtlePictureBox.Location = location;
+            turtlePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            turtlePictureBox.Tag = "level1EnemyTurtle"; // tag
+            turtlePictureBox.BackColor = Color.Transparent;
+
+            turtlePictureBox.Image = (Image)Properties.Resources.ResourceManager.GetObject(Turtleframes[0]);
+
+            turtlePictureBox.Name = "pictureBoxEnemyTurtle" + turtleNumber;
+
+            Controls.Add(turtlePictureBox);
+            turtlePictureBoxes.Add(turtlePictureBox);
+            turtleCurrentFrameIndices.Add(0);
+
+            //Sad kreiramo turtleStoppers
+
+
+            // azuriraj stoppere
+
+            turtleStopper_R.Location = new Point(locationLastPlatform.X + 20, location.Y); // Adjust the position based on turtlePictureBox
+            turtleStopper_L.Location = new Point(location.X - 20, location.Y);
+
+            turtleStopper_R.Tag = turtleStopper_L.Tag = "turtleStopper"; // Adjust the tag as needed
+            turtleStopper_L.Name = "turtleStopper" + turtleNumber + "_L";
+            turtleStopper_R.Name = "turtleStopper" + turtleNumber + "_R";
+
+            turtleStopper_R.BackColor = Color.Transparent; // Example color, you can change it
+            turtleStopper_L.BackColor = Color.Transparent;
+
+            Controls.Add(turtleStopper_R);
+            Controls.Add(turtleStopper_L);
+
+            //MoveTurtles(turtlePictureBox, turtleStopper_R, turtleStopper_L, turtleNumber);
+
         }
 
         // Add this event handler for the animation timer tick -LPA
@@ -193,31 +321,20 @@ namespace RP3_Platformer
                     // Extract the number from the PictureBox name
                     int pictureBoxNumber;
                     // Move to the next frame
-                    currentFrameIndex = (currentFrameIndex + 1) % Coinframes.Count;
+                    currentCoinFrameIndex = (currentCoinFrameIndex + 1) % Coinframes.Count;
                     if (int.TryParse(control.Name.Replace("pictureBoxCoin", ""), out pictureBoxNumber))
                     {
                         // Update the coin picture box with the next frame
-                        ((PictureBox)control).Image = (Image)Properties.Resources.ResourceManager.GetObject(Coinframes[currentFrameIndex]);
+                        ((PictureBox)control).Image = (Image)Properties.Resources.ResourceManager.GetObject(Coinframes[currentCoinFrameIndex]);
                     }
                 }
-
-                if (control is PictureBox && control.Tag != null && control.Tag.ToString().EndsWith("Plant"))
-                {
-                    // Extract the number from the PictureBox name
-                    int plantNumber;
-                    // Move to the next frame
-                    currentFrameIndex = (currentFrameIndex + 1) % Plantframes.Count;
-                    if (int.TryParse(control.Name.Replace("pictureBoxEnemyPlant", ""), out plantNumber))
-                    {
-                        // Update the plant picture with the next frame
-                        ((PictureBox)control).Image = (Image)Properties.Resources.ResourceManager.GetObject(Plantframes[currentFrameIndex]);
-                    }
-                }
-
-
             }
-
-
+            // Update the turtle PictureBoxes with the next frame
+            for (int i = 0; i < turtlePictureBoxes.Count; i++)
+            {
+                turtleCurrentFrameIndices[i] = (turtleCurrentFrameIndices[i] + 1) % Turtleframes.Count;
+                turtlePictureBoxes[i].Image = (Image)Properties.Resources.ResourceManager.GetObject(Turtleframes[turtleCurrentFrameIndices[i]]);
+            }
         }
 
 
@@ -391,11 +508,29 @@ namespace RP3_Platformer
 
             if (player.MovingLeft == true && player.MovingRight == false)
             {
-                pictureBoxPlayer.Left -= player.MovingSpeed;
+
+                if (IsKeyDown(Keys.Left) && IsKeyDown(Keys.S))
+                {
+                    Console.WriteLine("speeed!");
+                    pictureBoxPlayer.Left -= player.MovingSpeed * 2;
+                }
+                else
+                {
+                    pictureBoxPlayer.Left -= player.MovingSpeed;
+                }
             }
+
             if (player.MovingRight == true && player.MovingLeft == false)
             {
-                pictureBoxPlayer.Left += player.MovingSpeed;
+                if (IsKeyDown(Keys.Right) && IsKeyDown(Keys.S))
+                {
+                    Console.WriteLine("speeed!");
+                    pictureBoxPlayer.Left += player.MovingSpeed * 2;
+                }
+                else
+                {
+                    pictureBoxPlayer.Left += player.MovingSpeed;
+                }
             }
 
             if (player.JumpingOnce == true && player.Force < 0)
@@ -441,26 +576,34 @@ namespace RP3_Platformer
         /// </summary>
         private void MoveTurtles()
         {
-            pictureBoxEnemyTurtle1.Left += turtlespeed1;
+            for (int i = 0; i < 4; i++)
+            {
+                turtlePictureBoxes[i].Left += turtlespeed[i];
+                if (turtlePictureBoxes[i].Bounds.IntersectsWith(turtleStopperBoxes_R[i].Bounds) || turtlePictureBoxes[i].Bounds.IntersectsWith(turtleStopperBoxes_L[i].Bounds))
+                {
+                    turtlespeed[i] *= (-1);
+                }
+            }
+            /*pictureBoxEnemyTurtle1.Left += turtlespeed[0];
             if (pictureBoxEnemyTurtle1.Bounds.IntersectsWith(turtleStopper1_R.Bounds) || pictureBoxEnemyTurtle1.Bounds.IntersectsWith(turtleStopper1_L.Bounds))
             {
-                turtlespeed1 *= (-1);
+                turtlespeed[0] *= (-1);
             }
-            pictureBoxEnemyTurtle2.Left += turtlespeed2;
+            pictureBoxEnemyTurtle2.Left += turtlespeed[1];
             if (pictureBoxEnemyTurtle2.Bounds.IntersectsWith(turtleStopper2_R.Bounds) || pictureBoxEnemyTurtle2.Bounds.IntersectsWith(turtleStopper2_L.Bounds))
             {
-                turtlespeed2 *= (-1);
+                turtlespeed[1] *= (-1);
             }
-            pictureBoxEnemyTurtle3.Left += turtlespeed3;
+            pictureBoxEnemyTurtle3.Left += turtlespeed[2];
             if (pictureBoxEnemyTurtle3.Bounds.IntersectsWith(turtleStopper3_R.Bounds) || pictureBoxEnemyTurtle3.Bounds.IntersectsWith(turtleStopper3_L.Bounds))
             {
-                turtlespeed3 *= (-1);
+                turtlespeed[2] *= (-1);
             }
-            pictureBoxEnemyTurtle4.Left += turtlespeed4;
+            pictureBoxEnemyTurtle4.Left += turtlespeed[3];
             if (pictureBoxEnemyTurtle4.Bounds.IntersectsWith(turtleStopper4_R.Bounds) || pictureBoxEnemyTurtle4.Bounds.IntersectsWith(turtleStopper4_L.Bounds))
             {
-                turtlespeed4 *= (-1);
-            }
+                turtlespeed[3] *= (-1);
+            }*/
         }
 
         /// <summary>
@@ -743,5 +886,16 @@ namespace RP3_Platformer
                 realShield1.Visible = false;
             }
         }
+
+        /// <summary>
+        /// za provjeru tipke
+        /// </summary>
+        private bool IsKeyDown(Keys key)
+        {
+            return (GetKeyState((int)key) & 0x8000) != 0;
+        }
+
+        [DllImport("user32.dll")]
+        public static extern short GetKeyState(int nVrtKey);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace RP3_Platformer
 {
     internal class Player
     {
-        bool jumpingOnce, jumpingTwice, movingLeft, movingRight;
+        bool jumpingOnce, jumpingTwice, movingLeft, movingRight, dash;
 
         int jumpingSpeed;
         int force;
@@ -58,9 +58,14 @@ namespace RP3_Platformer
             get { return lives; }
             set { lives = value; }
         }
-        public int MovingSpeed { 
+        public int MovingSpeed {
             get { return movingSpeed; }
             set { movingSpeed = value; }
+        }
+        public bool Dash
+        {
+            get { return dash; }
+            set { dash = value; }
         }
         #endregion
 

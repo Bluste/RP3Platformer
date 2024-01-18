@@ -34,7 +34,6 @@ namespace RP3_Platformer
             this.labelLives = new System.Windows.Forms.Label();
             this.labelScore = new System.Windows.Forms.Label();
             this.pictureBoxPlayer = new System.Windows.Forms.PictureBox();
-            this.pictureBoxEnemyTurtle1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin2 = new System.Windows.Forms.PictureBox();
@@ -96,9 +95,6 @@ namespace RP3_Platformer
             this.pictureBoxCoin7 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin10 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin9 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxEnemyTurtle2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxEnemyTurtle4 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxEnemyTurtle3 = new System.Windows.Forms.PictureBox();
             this.pipeFinal = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin36 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin35 = new System.Windows.Forms.PictureBox();
@@ -111,14 +107,6 @@ namespace RP3_Platformer
             this.rightChecker = new System.Windows.Forms.PictureBox();
             this.ceilingChecker = new System.Windows.Forms.PictureBox();
             this.pipePlant2 = new System.Windows.Forms.PictureBox();
-            this.turtleStopper4_L = new System.Windows.Forms.PictureBox();
-            this.turtleStopper4_R = new System.Windows.Forms.PictureBox();
-            this.turtleStopper3_L = new System.Windows.Forms.PictureBox();
-            this.turtleStopper3_R = new System.Windows.Forms.PictureBox();
-            this.turtleStopper1_L = new System.Windows.Forms.PictureBox();
-            this.turtleStopper1_R = new System.Windows.Forms.PictureBox();
-            this.turtleStopper2_L = new System.Windows.Forms.PictureBox();
-            this.turtleStopper2_R = new System.Windows.Forms.PictureBox();
             this.plantStopper2_U = new System.Windows.Forms.PictureBox();
             this.plantStopper2_D = new System.Windows.Forms.PictureBox();
             this.plantStopper1_U = new System.Windows.Forms.PictureBox();
@@ -127,7 +115,6 @@ namespace RP3_Platformer
             this.shield1 = new System.Windows.Forms.PictureBox();
             this.realShield1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin2)).BeginInit();
@@ -188,9 +175,6 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin35)).BeginInit();
@@ -203,14 +187,6 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.rightChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceilingChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipePlant2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper4_L)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper4_R)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper3_L)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper3_R)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper1_L)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper1_R)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_L)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_R)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_U)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_D)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_U)).BeginInit();
@@ -255,20 +231,6 @@ namespace RP3_Platformer
             this.pictureBoxPlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPlayer.TabIndex = 6;
             this.pictureBoxPlayer.TabStop = false;
-            //
-            // pictureBoxEnemyTurtle1
-            //
-            this.pictureBoxEnemyTurtle1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxEnemyTurtle1.Image = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle1.InitialImage = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle1.Location = new System.Drawing.Point(388, 341);
-            this.pictureBoxEnemyTurtle1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEnemyTurtle1.Name = "pictureBoxEnemyTurtle1";
-            this.pictureBoxEnemyTurtle1.Size = new System.Drawing.Size(43, 50);
-            this.pictureBoxEnemyTurtle1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEnemyTurtle1.TabIndex = 7;
-            this.pictureBoxEnemyTurtle1.TabStop = false;
-            this.pictureBoxEnemyTurtle1.Tag = "level1EnemyTurtle";
             //
             // pictureBoxCoin3
             //
@@ -1104,48 +1066,6 @@ namespace RP3_Platformer
             this.pictureBoxCoin9.TabStop = false;
             this.pictureBoxCoin9.Tag = "level1coin";
             //
-            // pictureBoxEnemyTurtle2
-            //
-            this.pictureBoxEnemyTurtle2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxEnemyTurtle2.Image = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle2.InitialImage = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle2.Location = new System.Drawing.Point(159, 145);
-            this.pictureBoxEnemyTurtle2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEnemyTurtle2.Name = "pictureBoxEnemyTurtle2";
-            this.pictureBoxEnemyTurtle2.Size = new System.Drawing.Size(43, 50);
-            this.pictureBoxEnemyTurtle2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEnemyTurtle2.TabIndex = 77;
-            this.pictureBoxEnemyTurtle2.TabStop = false;
-            this.pictureBoxEnemyTurtle2.Tag = "level1EnemyTurtle";
-            //
-            // pictureBoxEnemyTurtle4
-            //
-            this.pictureBoxEnemyTurtle4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxEnemyTurtle4.Image = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle4.InitialImage = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle4.Location = new System.Drawing.Point(791, 78);
-            this.pictureBoxEnemyTurtle4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEnemyTurtle4.Name = "pictureBoxEnemyTurtle4";
-            this.pictureBoxEnemyTurtle4.Size = new System.Drawing.Size(43, 50);
-            this.pictureBoxEnemyTurtle4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEnemyTurtle4.TabIndex = 78;
-            this.pictureBoxEnemyTurtle4.TabStop = false;
-            this.pictureBoxEnemyTurtle4.Tag = "level1EnemyTurtle";
-            //
-            // pictureBoxEnemyTurtle3
-            //
-            this.pictureBoxEnemyTurtle3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxEnemyTurtle3.Image = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle3.InitialImage = global::RP3_Platformer.Properties.Resources.turtle1;
-            this.pictureBoxEnemyTurtle3.Location = new System.Drawing.Point(457, 450);
-            this.pictureBoxEnemyTurtle3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBoxEnemyTurtle3.Name = "pictureBoxEnemyTurtle3";
-            this.pictureBoxEnemyTurtle3.Size = new System.Drawing.Size(43, 50);
-            this.pictureBoxEnemyTurtle3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxEnemyTurtle3.TabIndex = 79;
-            this.pictureBoxEnemyTurtle3.TabStop = false;
-            this.pictureBoxEnemyTurtle3.Tag = "level1EnemyTurtle";
-            //
             // pipeFinal
             //
             this.pipeFinal.BackColor = System.Drawing.Color.Transparent;
@@ -1314,118 +1234,6 @@ namespace RP3_Platformer
             this.pipePlant2.TabStop = false;
             this.pipePlant2.Tag = "level1platform";
             //
-            // turtleStopper4_L
-            //
-            this.turtleStopper4_L.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper4_L.InitialImage = null;
-            this.turtleStopper4_L.Location = new System.Drawing.Point(731, 75);
-            this.turtleStopper4_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper4_L.Name = "turtleStopper4_L";
-            this.turtleStopper4_L.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper4_L.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper4_L.TabIndex = 93;
-            this.turtleStopper4_L.TabStop = false;
-            this.turtleStopper4_L.Tag = "turtleStopper";
-            this.turtleStopper4_L.Visible = false;
-            //
-            // turtleStopper4_R
-            //
-            this.turtleStopper4_R.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper4_R.InitialImage = null;
-            this.turtleStopper4_R.Location = new System.Drawing.Point(901, 77);
-            this.turtleStopper4_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper4_R.Name = "turtleStopper4_R";
-            this.turtleStopper4_R.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper4_R.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper4_R.TabIndex = 94;
-            this.turtleStopper4_R.TabStop = false;
-            this.turtleStopper4_R.Tag = "turtleStopper";
-            this.turtleStopper4_R.Visible = false;
-            //
-            // turtleStopper3_L
-            //
-            this.turtleStopper3_L.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper3_L.InitialImage = null;
-            this.turtleStopper3_L.Location = new System.Drawing.Point(104, 446);
-            this.turtleStopper3_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper3_L.Name = "turtleStopper3_L";
-            this.turtleStopper3_L.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper3_L.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper3_L.TabIndex = 95;
-            this.turtleStopper3_L.TabStop = false;
-            this.turtleStopper3_L.Tag = "turtleStopper";
-            this.turtleStopper3_L.Visible = false;
-            //
-            // turtleStopper3_R
-            //
-            this.turtleStopper3_R.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper3_R.InitialImage = null;
-            this.turtleStopper3_R.Location = new System.Drawing.Point(531, 446);
-            this.turtleStopper3_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper3_R.Name = "turtleStopper3_R";
-            this.turtleStopper3_R.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper3_R.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper3_R.TabIndex = 96;
-            this.turtleStopper3_R.TabStop = false;
-            this.turtleStopper3_R.Tag = "turtleStopper";
-            this.turtleStopper3_R.Visible = false;
-            //
-            // turtleStopper1_L
-            //
-            this.turtleStopper1_L.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper1_L.InitialImage = null;
-            this.turtleStopper1_L.Location = new System.Drawing.Point(307, 338);
-            this.turtleStopper1_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper1_L.Name = "turtleStopper1_L";
-            this.turtleStopper1_L.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper1_L.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper1_L.TabIndex = 97;
-            this.turtleStopper1_L.TabStop = false;
-            this.turtleStopper1_L.Tag = "turtleStopper";
-            this.turtleStopper1_L.Visible = false;
-            //
-            // turtleStopper1_R
-            //
-            this.turtleStopper1_R.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper1_R.InitialImage = null;
-            this.turtleStopper1_R.Location = new System.Drawing.Point(480, 338);
-            this.turtleStopper1_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper1_R.Name = "turtleStopper1_R";
-            this.turtleStopper1_R.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper1_R.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper1_R.TabIndex = 98;
-            this.turtleStopper1_R.TabStop = false;
-            this.turtleStopper1_R.Tag = "turtleStopper";
-            this.turtleStopper1_R.Visible = false;
-            //
-            // turtleStopper2_L
-            //
-            this.turtleStopper2_L.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper2_L.InitialImage = null;
-            this.turtleStopper2_L.Location = new System.Drawing.Point(70, 146);
-            this.turtleStopper2_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper2_L.Name = "turtleStopper2_L";
-            this.turtleStopper2_L.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper2_L.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper2_L.TabIndex = 99;
-            this.turtleStopper2_L.TabStop = false;
-            this.turtleStopper2_L.Tag = "turtleStopper";
-            this.turtleStopper2_L.Visible = false;
-            //
-            // turtleStopper2_R
-            //
-            this.turtleStopper2_R.BackColor = System.Drawing.Color.Transparent;
-            this.turtleStopper2_R.InitialImage = null;
-            this.turtleStopper2_R.Location = new System.Drawing.Point(247, 145);
-            this.turtleStopper2_R.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.turtleStopper2_R.Name = "turtleStopper2_R";
-            this.turtleStopper2_R.Size = new System.Drawing.Size(20, 53);
-            this.turtleStopper2_R.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.turtleStopper2_R.TabIndex = 100;
-            this.turtleStopper2_R.TabStop = false;
-            this.turtleStopper2_R.Tag = "turtleStopper";
-            this.turtleStopper2_R.Visible = false;
-            //
             // plantStopper2_U
             //
             this.plantStopper2_U.BackColor = System.Drawing.Color.Transparent;
@@ -1540,14 +1348,6 @@ namespace RP3_Platformer
             this.Controls.Add(this.plantStopper1_U);
             this.Controls.Add(this.plantStopper2_D);
             this.Controls.Add(this.plantStopper2_U);
-            this.Controls.Add(this.turtleStopper2_R);
-            this.Controls.Add(this.turtleStopper2_L);
-            this.Controls.Add(this.turtleStopper1_R);
-            this.Controls.Add(this.turtleStopper1_L);
-            this.Controls.Add(this.turtleStopper3_R);
-            this.Controls.Add(this.turtleStopper3_L);
-            this.Controls.Add(this.turtleStopper4_R);
-            this.Controls.Add(this.turtleStopper4_L);
             this.Controls.Add(this.pipePlant2);
             this.Controls.Add(this.ceilingChecker);
             this.Controls.Add(this.rightChecker);
@@ -1560,9 +1360,6 @@ namespace RP3_Platformer
             this.Controls.Add(this.pictureBoxCoin35);
             this.Controls.Add(this.pictureBoxCoin34);
             this.Controls.Add(this.pipeFinal);
-            this.Controls.Add(this.pictureBoxEnemyTurtle3);
-            this.Controls.Add(this.pictureBoxEnemyTurtle4);
-            this.Controls.Add(this.pictureBoxEnemyTurtle2);
             this.Controls.Add(this.pictureBoxCoin10);
             this.Controls.Add(this.pictureBoxCoin9);
             this.Controls.Add(this.pictureBoxCoin8);
@@ -1623,7 +1420,6 @@ namespace RP3_Platformer
             this.Controls.Add(this.pictureBoxCoin1);
             this.Controls.Add(this.pictureBoxCoin4);
             this.Controls.Add(this.pictureBoxCoin3);
-            this.Controls.Add(this.pictureBoxEnemyTurtle1);
             this.Controls.Add(this.pictureBoxPlayer);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.labelLives);
@@ -1637,7 +1433,6 @@ namespace RP3_Platformer
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin2)).EndInit();
@@ -1698,9 +1493,6 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipeFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin35)).EndInit();
@@ -1713,14 +1505,6 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.rightChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceilingChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipePlant2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper4_L)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper4_R)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper3_L)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper3_R)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper1_L)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper1_R)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_L)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_R)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_U)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_D)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_U)).EndInit();
@@ -1738,7 +1522,6 @@ namespace RP3_Platformer
         private System.Windows.Forms.Label labelLives;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.PictureBox pictureBoxPlayer;
-        private System.Windows.Forms.PictureBox pictureBoxEnemyTurtle1;
         private System.Windows.Forms.PictureBox pictureBoxCoin3;
         private System.Windows.Forms.PictureBox pictureBoxCoin4;
         private System.Windows.Forms.PictureBox pictureBoxCoin2;
@@ -1800,9 +1583,6 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox pictureBoxCoin7;
         private System.Windows.Forms.PictureBox pictureBoxCoin10;
         private System.Windows.Forms.PictureBox pictureBoxCoin9;
-        private System.Windows.Forms.PictureBox pictureBoxEnemyTurtle2;
-        private System.Windows.Forms.PictureBox pictureBoxEnemyTurtle4;
-        private System.Windows.Forms.PictureBox pictureBoxEnemyTurtle3;
         private System.Windows.Forms.PictureBox pipeFinal;
         private System.Windows.Forms.PictureBox pictureBoxCoin36;
         private System.Windows.Forms.PictureBox pictureBoxCoin35;
@@ -1815,14 +1595,6 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox rightChecker;
         private System.Windows.Forms.PictureBox ceilingChecker;
         private System.Windows.Forms.PictureBox pipePlant2;
-        private System.Windows.Forms.PictureBox turtleStopper4_L;
-        private System.Windows.Forms.PictureBox turtleStopper4_R;
-        private System.Windows.Forms.PictureBox turtleStopper3_L;
-        private System.Windows.Forms.PictureBox turtleStopper3_R;
-        private System.Windows.Forms.PictureBox turtleStopper1_L;
-        private System.Windows.Forms.PictureBox turtleStopper1_R;
-        private System.Windows.Forms.PictureBox turtleStopper2_L;
-        private System.Windows.Forms.PictureBox turtleStopper2_R;
         private System.Windows.Forms.PictureBox plantStopper2_U;
         private System.Windows.Forms.PictureBox plantStopper2_D;
         private System.Windows.Forms.PictureBox plantStopper1_U;
