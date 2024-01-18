@@ -46,7 +46,17 @@ namespace RP3_Platformer
         int turtlespeed3 = 3;
         int turtlespeed4 = 3;
 
+        int plantspeed1 = 2;
+        int plantspeed2 = 2;
+
         bool cooldown = false;
+
+        bool plantmover1 = false;
+        bool plantmover2 = false;
+        bool lethal1 = true;
+        bool lethal2 = true;
+
+        int flowerover = 0;
 
         //Level 2 settings
         int level2PlayerXPosition = 40;
@@ -83,6 +93,8 @@ namespace RP3_Platformer
             MovePlatforms();
 
             MoveTurtles();
+
+            MovePlants();
 
             CheckForNewLevel();
 
@@ -148,6 +160,12 @@ namespace RP3_Platformer
 
             animationTimer.Interval = 150; //interval za animacije
             animationTimer.Tick += AnimationTimer_Tick;
+
+            pictureBoxEnemyPlant1.SendToBack();
+            pictureBoxEnemyPlant2.SendToBack();
+            flower1.SendToBack();
+            flower1.Visible = false;
+
 
         }
 
@@ -235,7 +253,7 @@ namespace RP3_Platformer
             switch (levelNumber)
             {
                 case 1:
-                    player.Lives = 3;
+                    player.Lives = 10;   //lakse za testirati nego 3
                     player.Score = 0;
                     labelLives.Text = "Lives: " + player.Lives;
                     labelScore.Text = "Score: " + player.Score;
@@ -434,6 +452,62 @@ namespace RP3_Platformer
             }
         }
 
+        /// <summary>
+        /// Pomiče biljke
+        /// </summary>
+        private void MovePlants()        //jos treba biljke move behind ili tak nekak
+        {
+            if (!plantmover1) pictureBoxEnemyPlant1.Top += plantspeed1;
+            if (pictureBoxEnemyPlant1.Bounds.IntersectsWith(plantStopper1_D.Bounds) || pictureBoxEnemyPlant1.Bounds.IntersectsWith(plantStopper1_U.Bounds))
+            {
+                pictureBoxEnemyPlant1.Top -= plantspeed1;
+                plantmover1 = true;
+                Timer plantTimer = new Timer();
+                if (plantspeed1 == 2)
+                {
+                    plantTimer.Interval = 4000;
+                    lethal1 = false;
+                }
+                else
+                {
+                    plantTimer.Interval = 1000;
+                    lethal1 = true;
+                }
+                plantTimer.Tick += (sender, e) =>
+                {
+                    plantmover1 = false;
+                    plantTimer.Stop();
+                    plantTimer.Dispose();
+                };
+                plantTimer.Start();
+                plantspeed1 *= (-1);
+            }
+
+            if (!plantmover2) pictureBoxEnemyPlant2.Top += plantspeed2;
+            if (pictureBoxEnemyPlant2.Bounds.IntersectsWith(plantStopper2_D.Bounds) || pictureBoxEnemyPlant2.Bounds.IntersectsWith(plantStopper2_U.Bounds))
+            {
+                pictureBoxEnemyPlant2.Top -= plantspeed2;
+                plantmover2 = true;
+                Timer plantTimer = new Timer();
+                if (plantspeed2 == 2)
+                {
+                    plantTimer.Interval = 5000;
+                }
+                else
+                {
+                    plantTimer.Interval = 1000;
+                }
+                plantTimer.Tick += (sender, e) =>
+                {
+                    plantmover2 = false;
+                    plantTimer.Stop();
+                    plantTimer.Dispose();
+                };
+                plantTimer.Start();
+                plantspeed2 *= (-1);
+            }
+        }
+
 
         /// <summary>
         /// Provjerava sve dodire igraca s ostalim objektima
@@ -441,15 +515,23 @@ namespace RP3_Platformer
         ///
         private void HandleCollisions()
         {
-            /*if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds))
+            if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds) &&
+                flower1.Visible == false && flowerover == 0
+                )  //aktivacija cvijeta
             {
                 Console.WriteLine("cvijeticu");
-                player.JumpingOnce = false;
-                player.JumpingTwice = false;
-                player.Force = 0;
-                player.JumpingSpeed = 8;
-                //izbaci flower
-            }*/
+                flower1.Visible = true;
+                while (flower1.Bounds.IntersectsWith(brickBoxFlower.Bounds))
+                {
+                    flower1.Top -= 1;
+                }
+            }
+            if (pictureBoxPlayer.Bounds.IntersectsWith(flower1.Bounds) && flower1.Visible == true)   //skupljanje cvijeta
+            {
+                flower1.Visible = false;
+                player.Lives += 1;
+                flowerover = 1;
+            }
             foreach (Control control in this.Controls)
             {
                 if (control is PictureBox)
@@ -523,6 +605,30 @@ namespace RP3_Platformer
                             cooldownTimer.Start();
                         }
                     }
+                    if ((string)control.Tag == "level1EnemyPlant" || (string)control.Tag == "level2EnemyPlant" || (string)control.Tag == "level3EnemyPlant")
+                    {
+                        bool lethal = lethal1;
+                        if (control.Name.EndsWith("2")) lethal = lethal2;
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown && lethal)
+                        {
+                            player.Lives -= 2;
+                            //control.Visible = false;
+                            if (player.Lives <= 0)
+                            {
+                                isGameOver = true;
+                            }
+                            cooldown = true;
+                            Timer cooldownTimer = new Timer();
+                            cooldownTimer.Interval = 3000;   //3 sekunde cooldowna?
+                            cooldownTimer.Tick += (sender, e) =>
+                            {
+                                cooldown = false;
+                                cooldownTimer.Stop();
+                                cooldownTimer.Dispose();
+                            };
+                            cooldownTimer.Start();
+                        }
+                    }
                 }
             }
         }
@@ -546,6 +652,7 @@ namespace RP3_Platformer
         {
 
         }
+
         private void CheckForGameOver()
         {
             if (pictureBoxPlayer.Top > ClientSize.Height)

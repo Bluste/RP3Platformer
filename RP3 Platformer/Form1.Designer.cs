@@ -1,3 +1,4 @@
+
 namespace RP3_Platformer
 {
     partial class Form1
@@ -56,7 +57,7 @@ namespace RP3_Platformer
             this.pictureBoxCoin18 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCoin17 = new System.Windows.Forms.PictureBox();
             this.horizontalMovingPlatform = new System.Windows.Forms.PictureBox();
-            this.brick1 = new System.Windows.Forms.PictureBox();
+            this.brickBoxFlower = new System.Windows.Forms.PictureBox();
             this.verticalMovingPlatform = new System.Windows.Forms.PictureBox();
             this.groundChecker = new System.Windows.Forms.PictureBox();
             this.floor2 = new System.Windows.Forms.PictureBox();
@@ -118,6 +119,11 @@ namespace RP3_Platformer
             this.turtleStopper1_R = new System.Windows.Forms.PictureBox();
             this.turtleStopper2_L = new System.Windows.Forms.PictureBox();
             this.turtleStopper2_R = new System.Windows.Forms.PictureBox();
+            this.plantStopper2_U = new System.Windows.Forms.PictureBox();
+            this.plantStopper2_D = new System.Windows.Forms.PictureBox();
+            this.plantStopper1_U = new System.Windows.Forms.PictureBox();
+            this.plantStopper1_D = new System.Windows.Forms.PictureBox();
+            this.flower1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).BeginInit();
@@ -141,7 +147,7 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.horizontalMovingPlatform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brick1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brickBoxFlower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.verticalMovingPlatform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groundChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.floor2)).BeginInit();
@@ -203,6 +209,11 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.turtleStopper1_R)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_L)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_R)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_U)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_D)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_U)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_D)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flower1)).BeginInit();
             this.SuspendLayout();
             //
             // labelLives
@@ -555,18 +566,18 @@ namespace RP3_Platformer
             this.horizontalMovingPlatform.TabStop = false;
             this.horizontalMovingPlatform.Tag = "level1platform";
             //
-            // brick1
+            // brickBoxFlower
             //
-            this.brick1.BackColor = System.Drawing.Color.Transparent;
-            this.brick1.Image = global::RP3_Platformer.Properties.Resources.brick;
-            this.brick1.Location = new System.Drawing.Point(213, 100);
-            this.brick1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.brick1.Name = "brick1";
-            this.brick1.Size = new System.Drawing.Size(31, 32);
-            this.brick1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.brick1.TabIndex = 38;
-            this.brick1.TabStop = false;
-            this.brick1.Tag = "level1brick";
+            this.brickBoxFlower.BackColor = System.Drawing.Color.Transparent;
+            this.brickBoxFlower.Image = global::RP3_Platformer.Properties.Resources.brick;
+            this.brickBoxFlower.Location = new System.Drawing.Point(213, 100);
+            this.brickBoxFlower.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.brickBoxFlower.Name = "brickBoxFlower";
+            this.brickBoxFlower.Size = new System.Drawing.Size(31, 32);
+            this.brickBoxFlower.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.brickBoxFlower.TabIndex = 38;
+            this.brickBoxFlower.TabStop = false;
+            this.brickBoxFlower.Tag = "level1brick";
             //
             // verticalMovingPlatform
             //
@@ -1205,6 +1216,7 @@ namespace RP3_Platformer
             // pipePlant1
             //
             this.pipePlant1.BackColor = System.Drawing.Color.Transparent;
+            this.pipePlant1.Image = global::RP3_Platformer.Properties.Resources.pipe2;
             this.pipePlant1.InitialImage = null;
             this.pipePlant1.Location = new System.Drawing.Point(557, 471);
             this.pipePlant1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1220,7 +1232,7 @@ namespace RP3_Platformer
             this.pictureBoxEnemyPlant2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxEnemyPlant2.Image = global::RP3_Platformer.Properties.Resources.plant1;
             this.pictureBoxEnemyPlant2.InitialImage = global::RP3_Platformer.Properties.Resources.plant1;
-            this.pictureBoxEnemyPlant2.Location = new System.Drawing.Point(645, 166);
+            this.pictureBoxEnemyPlant2.Location = new System.Drawing.Point(645, 162);
             this.pictureBoxEnemyPlant2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxEnemyPlant2.Name = "pictureBoxEnemyPlant2";
             this.pictureBoxEnemyPlant2.Size = new System.Drawing.Size(43, 50);
@@ -1287,8 +1299,9 @@ namespace RP3_Platformer
             // pipePlant2
             //
             this.pipePlant2.BackColor = System.Drawing.Color.Transparent;
+            this.pipePlant2.Image = global::RP3_Platformer.Properties.Resources.pipe2;
             this.pipePlant2.InitialImage = null;
-            this.pipePlant2.Location = new System.Drawing.Point(649, 214);
+            this.pipePlant2.Location = new System.Drawing.Point(649, 212);
             this.pipePlant2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pipePlant2.Name = "pipePlant2";
             this.pipePlant2.Size = new System.Drawing.Size(35, 31);
@@ -1329,7 +1342,7 @@ namespace RP3_Platformer
             //
             this.turtleStopper3_L.BackColor = System.Drawing.Color.Transparent;
             this.turtleStopper3_L.InitialImage = null;
-            this.turtleStopper3_L.Location = new System.Drawing.Point(307, 446);
+            this.turtleStopper3_L.Location = new System.Drawing.Point(104, 446);
             this.turtleStopper3_L.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.turtleStopper3_L.Name = "turtleStopper3_L";
             this.turtleStopper3_L.Size = new System.Drawing.Size(20, 53);
@@ -1409,6 +1422,76 @@ namespace RP3_Platformer
             this.turtleStopper2_R.Tag = "turtleStopper";
             this.turtleStopper2_R.Visible = false;
             //
+            // plantStopper2_U
+            //
+            this.plantStopper2_U.BackColor = System.Drawing.Color.Transparent;
+            this.plantStopper2_U.InitialImage = null;
+            this.plantStopper2_U.Location = new System.Drawing.Point(639, 146);
+            this.plantStopper2_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.plantStopper2_U.Name = "plantStopper2_U";
+            this.plantStopper2_U.Size = new System.Drawing.Size(53, 15);
+            this.plantStopper2_U.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.plantStopper2_U.TabIndex = 101;
+            this.plantStopper2_U.TabStop = false;
+            this.plantStopper2_U.Tag = "plantStopper";
+            this.plantStopper2_U.Visible = false;
+            //
+            // plantStopper2_D
+            //
+            this.plantStopper2_D.BackColor = System.Drawing.Color.Transparent;
+            this.plantStopper2_D.InitialImage = null;
+            this.plantStopper2_D.Location = new System.Drawing.Point(640, 265);
+            this.plantStopper2_D.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.plantStopper2_D.Name = "plantStopper2_D";
+            this.plantStopper2_D.Size = new System.Drawing.Size(53, 15);
+            this.plantStopper2_D.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.plantStopper2_D.TabIndex = 102;
+            this.plantStopper2_D.TabStop = false;
+            this.plantStopper2_D.Tag = "plantStopper";
+            this.plantStopper2_D.Visible = false;
+            //
+            // plantStopper1_U
+            //
+            this.plantStopper1_U.BackColor = System.Drawing.Color.Transparent;
+            this.plantStopper1_U.InitialImage = null;
+            this.plantStopper1_U.Location = new System.Drawing.Point(543, 405);
+            this.plantStopper1_U.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.plantStopper1_U.Name = "plantStopper1_U";
+            this.plantStopper1_U.Size = new System.Drawing.Size(53, 15);
+            this.plantStopper1_U.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.plantStopper1_U.TabIndex = 103;
+            this.plantStopper1_U.TabStop = false;
+            this.plantStopper1_U.Tag = "plantStopper";
+            this.plantStopper1_U.Visible = false;
+            //
+            // plantStopper1_D
+            //
+            this.plantStopper1_D.BackColor = System.Drawing.Color.Transparent;
+            this.plantStopper1_D.InitialImage = null;
+            this.plantStopper1_D.Location = new System.Drawing.Point(543, 525);
+            this.plantStopper1_D.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.plantStopper1_D.Name = "plantStopper1_D";
+            this.plantStopper1_D.Size = new System.Drawing.Size(53, 15);
+            this.plantStopper1_D.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.plantStopper1_D.TabIndex = 104;
+            this.plantStopper1_D.TabStop = false;
+            this.plantStopper1_D.Tag = "plantStopper";
+            this.plantStopper1_D.Visible = false;
+            //
+            // flower1
+            //
+            this.flower1.BackColor = System.Drawing.Color.Transparent;
+            this.flower1.Image = global::RP3_Platformer.Properties.Resources.flower4;
+            this.flower1.Location = new System.Drawing.Point(215, 103);
+            this.flower1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flower1.Name = "flower1";
+            this.flower1.Size = new System.Drawing.Size(29, 27);
+            this.flower1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.flower1.TabIndex = 105;
+            this.flower1.TabStop = false;
+            this.flower1.Tag = "level1flower";
+            this.flower1.Visible = false;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1417,6 +1500,11 @@ namespace RP3_Platformer
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(981, 553);
+            this.Controls.Add(this.flower1);
+            this.Controls.Add(this.plantStopper1_D);
+            this.Controls.Add(this.plantStopper1_U);
+            this.Controls.Add(this.plantStopper2_D);
+            this.Controls.Add(this.plantStopper2_U);
             this.Controls.Add(this.turtleStopper2_R);
             this.Controls.Add(this.turtleStopper2_L);
             this.Controls.Add(this.turtleStopper1_R);
@@ -1478,7 +1566,7 @@ namespace RP3_Platformer
             this.Controls.Add(this.floor2);
             this.Controls.Add(this.groundChecker);
             this.Controls.Add(this.verticalMovingPlatform);
-            this.Controls.Add(this.brick1);
+            this.Controls.Add(this.brickBoxFlower);
             this.Controls.Add(this.horizontalMovingPlatform);
             this.Controls.Add(this.pictureBoxCoin19);
             this.Controls.Add(this.pictureBoxCoin18);
@@ -1536,7 +1624,7 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.horizontalMovingPlatform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brick1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brickBoxFlower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.verticalMovingPlatform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groundChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.floor2)).EndInit();
@@ -1598,6 +1686,11 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.turtleStopper1_R)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_L)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.turtleStopper2_R)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_U)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper2_D)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_U)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_D)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.flower1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1631,7 +1724,7 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox pictureBoxCoin18;
         private System.Windows.Forms.PictureBox pictureBoxCoin17;
         private System.Windows.Forms.PictureBox horizontalMovingPlatform;
-        private System.Windows.Forms.PictureBox brick1;
+        private System.Windows.Forms.PictureBox brickBoxFlower;
         private System.Windows.Forms.PictureBox verticalMovingPlatform;
         private System.Windows.Forms.PictureBox groundChecker;
         private System.Windows.Forms.PictureBox floor2;
@@ -1693,5 +1786,10 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox turtleStopper1_R;
         private System.Windows.Forms.PictureBox turtleStopper2_L;
         private System.Windows.Forms.PictureBox turtleStopper2_R;
+        private System.Windows.Forms.PictureBox plantStopper2_U;
+        private System.Windows.Forms.PictureBox plantStopper2_D;
+        private System.Windows.Forms.PictureBox plantStopper1_U;
+        private System.Windows.Forms.PictureBox plantStopper1_D;
+        private System.Windows.Forms.PictureBox flower1;
     }
 }
