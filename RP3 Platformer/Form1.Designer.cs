@@ -106,7 +106,7 @@ namespace RP3_Platformer
             this.pictureBoxEnemyPlant1 = new System.Windows.Forms.PictureBox();
             this.pipePlant1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxEnemyPlant2 = new System.Windows.Forms.PictureBox();
-            this.brick2 = new System.Windows.Forms.PictureBox();
+            this.brickBoxShield = new System.Windows.Forms.PictureBox();
             this.leftChecker = new System.Windows.Forms.PictureBox();
             this.rightChecker = new System.Windows.Forms.PictureBox();
             this.ceilingChecker = new System.Windows.Forms.PictureBox();
@@ -124,6 +124,8 @@ namespace RP3_Platformer
             this.plantStopper1_U = new System.Windows.Forms.PictureBox();
             this.plantStopper1_D = new System.Windows.Forms.PictureBox();
             this.flower1 = new System.Windows.Forms.PictureBox();
+            this.shield1 = new System.Windows.Forms.PictureBox();
+            this.realShield1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyTurtle1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).BeginInit();
@@ -196,7 +198,7 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipePlant1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brick2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brickBoxShield)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightChecker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceilingChecker)).BeginInit();
@@ -214,6 +216,8 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_U)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_D)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.flower1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shield1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.realShield1)).BeginInit();
             this.SuspendLayout();
             //
             // labelLives
@@ -1216,7 +1220,7 @@ namespace RP3_Platformer
             // pipePlant1
             //
             this.pipePlant1.BackColor = System.Drawing.Color.Transparent;
-            this.pipePlant1.Image = global::RP3_Platformer.Properties.Resources.pipe2;
+            this.pipePlant1.Image = ((System.Drawing.Image)(resources.GetObject("pipePlant1.Image")));
             this.pipePlant1.InitialImage = null;
             this.pipePlant1.Location = new System.Drawing.Point(557, 471);
             this.pipePlant1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1241,18 +1245,18 @@ namespace RP3_Platformer
             this.pictureBoxEnemyPlant2.TabStop = false;
             this.pictureBoxEnemyPlant2.Tag = "level1EnemyPlant";
             //
-            // brick2
+            // brickBoxShield
             //
-            this.brick2.BackColor = System.Drawing.Color.Transparent;
-            this.brick2.Image = global::RP3_Platformer.Properties.Resources.brick;
-            this.brick2.Location = new System.Drawing.Point(744, 43);
-            this.brick2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.brick2.Name = "brick2";
-            this.brick2.Size = new System.Drawing.Size(31, 30);
-            this.brick2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.brick2.TabIndex = 88;
-            this.brick2.TabStop = false;
-            this.brick2.Tag = "level1brick";
+            this.brickBoxShield.BackColor = System.Drawing.Color.Transparent;
+            this.brickBoxShield.Image = global::RP3_Platformer.Properties.Resources.brick;
+            this.brickBoxShield.Location = new System.Drawing.Point(226, 390);
+            this.brickBoxShield.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.brickBoxShield.Name = "brickBoxShield";
+            this.brickBoxShield.Size = new System.Drawing.Size(31, 30);
+            this.brickBoxShield.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.brickBoxShield.TabIndex = 88;
+            this.brickBoxShield.TabStop = false;
+            this.brickBoxShield.Tag = "level1brick";
             //
             // leftChecker
             //
@@ -1299,7 +1303,7 @@ namespace RP3_Platformer
             // pipePlant2
             //
             this.pipePlant2.BackColor = System.Drawing.Color.Transparent;
-            this.pipePlant2.Image = global::RP3_Platformer.Properties.Resources.pipe2;
+            this.pipePlant2.Image = ((System.Drawing.Image)(resources.GetObject("pipePlant2.Image")));
             this.pipePlant2.InitialImage = null;
             this.pipePlant2.Location = new System.Drawing.Point(649, 212);
             this.pipePlant2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1482,7 +1486,7 @@ namespace RP3_Platformer
             //
             this.flower1.BackColor = System.Drawing.Color.Transparent;
             this.flower1.Image = global::RP3_Platformer.Properties.Resources.flower4;
-            this.flower1.Location = new System.Drawing.Point(215, 103);
+            this.flower1.Location = new System.Drawing.Point(214, 103);
             this.flower1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flower1.Name = "flower1";
             this.flower1.Size = new System.Drawing.Size(29, 27);
@@ -1492,6 +1496,35 @@ namespace RP3_Platformer
             this.flower1.Tag = "level1flower";
             this.flower1.Visible = false;
             //
+            // shield1
+            //
+            this.shield1.BackColor = System.Drawing.Color.Transparent;
+            this.shield1.Image = global::RP3_Platformer.Properties.Resources.shield5;
+            this.shield1.Location = new System.Drawing.Point(227, 392);
+            this.shield1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.shield1.Name = "shield1";
+            this.shield1.Size = new System.Drawing.Size(29, 27);
+            this.shield1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.shield1.TabIndex = 106;
+            this.shield1.TabStop = false;
+            this.shield1.Tag = "level1shield";
+            this.shield1.Visible = false;
+            //
+            // realShield1
+            //
+            this.realShield1.BackColor = System.Drawing.Color.Transparent;
+            this.realShield1.Image = global::RP3_Platformer.Properties.Resources.shield5;
+            this.realShield1.InitialImage = null;
+            this.realShield1.Location = new System.Drawing.Point(95, 276);
+            this.realShield1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.realShield1.Name = "realShield1";
+            this.realShield1.Size = new System.Drawing.Size(84, 87);
+            this.realShield1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.realShield1.TabIndex = 107;
+            this.realShield1.TabStop = false;
+            this.realShield1.Tag = "shield";
+            this.realShield1.Visible = false;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1500,6 +1533,8 @@ namespace RP3_Platformer
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(981, 553);
+            this.Controls.Add(this.realShield1);
+            this.Controls.Add(this.shield1);
             this.Controls.Add(this.flower1);
             this.Controls.Add(this.plantStopper1_D);
             this.Controls.Add(this.plantStopper1_U);
@@ -1517,7 +1552,7 @@ namespace RP3_Platformer
             this.Controls.Add(this.ceilingChecker);
             this.Controls.Add(this.rightChecker);
             this.Controls.Add(this.leftChecker);
-            this.Controls.Add(this.brick2);
+            this.Controls.Add(this.brickBoxShield);
             this.Controls.Add(this.pictureBoxEnemyPlant2);
             this.Controls.Add(this.pipePlant1);
             this.Controls.Add(this.pictureBoxEnemyPlant1);
@@ -1673,7 +1708,7 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pipePlant1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnemyPlant2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.brick2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brickBoxShield)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightChecker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ceilingChecker)).EndInit();
@@ -1691,6 +1726,8 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_U)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plantStopper1_D)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.flower1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shield1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.realShield1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1773,7 +1810,7 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox pictureBoxEnemyPlant1;
         private System.Windows.Forms.PictureBox pipePlant1;
         private System.Windows.Forms.PictureBox pictureBoxEnemyPlant2;
-        private System.Windows.Forms.PictureBox brick2;
+        private System.Windows.Forms.PictureBox brickBoxShield;
         private System.Windows.Forms.PictureBox leftChecker;
         private System.Windows.Forms.PictureBox rightChecker;
         private System.Windows.Forms.PictureBox ceilingChecker;
@@ -1791,5 +1828,7 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox plantStopper1_U;
         private System.Windows.Forms.PictureBox plantStopper1_D;
         private System.Windows.Forms.PictureBox flower1;
+        private System.Windows.Forms.PictureBox shield1;
+        private System.Windows.Forms.PictureBox realShield1;
     }
 }

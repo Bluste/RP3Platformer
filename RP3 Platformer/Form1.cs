@@ -50,6 +50,7 @@ namespace RP3_Platformer
         int plantspeed2 = 2;
 
         bool cooldown = false;
+        bool shieldOn = false;
 
         bool plantmover1 = false;
         bool plantmover2 = false;
@@ -57,6 +58,7 @@ namespace RP3_Platformer
         bool lethal2 = true;
 
         int flowerover = 0;
+        int shieldover = 0;
 
         //Level 2 settings
         int level2PlayerXPosition = 40;
@@ -85,6 +87,12 @@ namespace RP3_Platformer
             SetLeftChecker();
 
             SetRightChecker();
+
+            FlowerAdvancement();
+
+            ShieldAdvancement();
+
+            ShieldProtection();
 
             HandleCollisions();
 
@@ -163,9 +171,12 @@ namespace RP3_Platformer
 
             pictureBoxEnemyPlant1.SendToBack();
             pictureBoxEnemyPlant2.SendToBack();
+
             flower1.SendToBack();
             flower1.Visible = false;
-
+            shield1.SendToBack();
+            shield1.Visible = false;
+            realShield1.SendToBack();
 
         }
 
@@ -515,23 +526,6 @@ namespace RP3_Platformer
         ///
         private void HandleCollisions()
         {
-            if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds) &&
-                flower1.Visible == false && flowerover == 0
-                )  //aktivacija cvijeta
-            {
-                Console.WriteLine("cvijeticu");
-                flower1.Visible = true;
-                while (flower1.Bounds.IntersectsWith(brickBoxFlower.Bounds))
-                {
-                    flower1.Top -= 1;
-                }
-            }
-            if (pictureBoxPlayer.Bounds.IntersectsWith(flower1.Bounds) && flower1.Visible == true)   //skupljanje cvijeta
-            {
-                flower1.Visible = false;
-                player.Lives += 1;
-                flowerover = 1;
-            }
             foreach (Control control in this.Controls)
             {
                 if (control is PictureBox)
@@ -572,7 +566,7 @@ namespace RP3_Platformer
                         }
                         if ((string)control.Tag == "level1Enemy" || (string)control.Tag == "level2Enemy" || (string)control.Tag == "level3Enemy")
                         {
-                            if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true)
+                            if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !shieldOn)
                             {
                                 player.Lives -= 1;
                                 control.Visible = false;
@@ -585,7 +579,7 @@ namespace RP3_Platformer
                     }
                     if ((string)control.Tag == "level1EnemyTurtle" || (string)control.Tag == "level2EnemyTurtle" || (string)control.Tag == "level3EnemyTurtle")
                     {
-                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown)
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown && !shieldOn)
                         {
                             player.Lives -= 1;
                             //control.Visible = false;
@@ -609,7 +603,7 @@ namespace RP3_Platformer
                     {
                         bool lethal = lethal1;
                         if (control.Name.EndsWith("2")) lethal = lethal2;
-                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown && lethal)
+                        if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown && lethal && !shieldOn)
                         {
                             player.Lives -= 2;
                             //control.Visible = false;
@@ -632,6 +626,7 @@ namespace RP3_Platformer
                 }
             }
         }
+
 
         private void CheckForNewLevel()
         {
@@ -677,6 +672,76 @@ namespace RP3_Platformer
             //Privremeni kraj igre
             MessageBox.Show("Press Enter to play again!");
 
+        }
+
+        private void FlowerAdvancement()
+        {
+            if (ceilingChecker.Bounds.IntersectsWith(brickBoxFlower.Bounds) &&
+                flower1.Visible == false && flowerover == 0
+                )  //aktivacija cvijeta
+            {
+                Console.WriteLine("cvijeticu");
+                flower1.Visible = true;
+                while (flower1.Bounds.IntersectsWith(brickBoxFlower.Bounds))
+                {
+                    flower1.Top -= 1;
+                }
+            }
+
+            if (pictureBoxPlayer.Bounds.IntersectsWith(flower1.Bounds) && flower1.Visible == true)   //skupljanje cvijeta
+            {
+                flower1.Visible = false;
+                player.Lives += 1;
+                flowerover = 1;
+            }
+        }
+
+        private void ShieldAdvancement()
+        {
+            if (ceilingChecker.Bounds.IntersectsWith(brickBoxShield.Bounds) &&
+                shield1.Visible == false && shieldover == 0
+                )  //aktivacija štita
+            {
+                shield1.Visible = true;
+                while (shield1.Bounds.IntersectsWith(brickBoxShield.Bounds))
+                {
+                    shield1.Top -= 1;
+                }
+            }
+
+            if (pictureBoxPlayer.Bounds.IntersectsWith(shield1.Bounds) && shield1.Visible == true)   //skupljanje štita
+            {
+                shield1.Visible = false;
+                shieldover = 1;
+
+                shieldOn = true;
+                Timer cooldownTimer = new Timer();
+                cooldownTimer.Interval = 10000;
+                cooldownTimer.Tick += (sender, e) =>
+                {
+                    shieldOn = false;
+                    cooldownTimer.Stop();
+                    cooldownTimer.Dispose();
+                };
+                cooldownTimer.Start();
+            }
+        }
+
+        /// <summary>
+        /// implementira rad štita
+        /// </summary>
+        private void ShieldProtection()
+        {
+            if (shieldOn == true)
+            {
+                realShield1.Visible = true;
+                realShield1.Top = pictureBoxPlayer.Top - 15;
+                realShield1.Left = pictureBoxPlayer.Left - 10;
+            }
+            else
+            {
+                realShield1.Visible = false;
+            }
         }
     }
 }
