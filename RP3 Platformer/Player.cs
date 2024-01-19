@@ -14,8 +14,11 @@ namespace RP3_Platformer
         int jumpingSpeed;
         int force;
         float score = 0;
-        int lives = 10;
+        float lives = 10;
         int movingSpeed = 5;
+        int slowDownFrameRate = 0;
+        int lastOrientation = 0;
+
 
         #region Getters and setters
         public bool JumpingOnce
@@ -48,17 +51,28 @@ namespace RP3_Platformer
             get { return force; }
             set { force = value; }
         }
+        public int LastOrientation
+        {
+            get { return lastOrientation; }
+            set { lastOrientation = value; }
+        }
+        public int SlowDownFrameRate
+        {
+            get { return slowDownFrameRate; }
+            set { slowDownFrameRate = value; }
+        }
         public float Score
         {
             get { return score; }
             set { score = value; }
         }
-        public int Lives
+        public float Lives
         {
             get { return lives; }
             set { lives = value; }
         }
-        public int MovingSpeed {
+        public int MovingSpeed
+        {
             get { return movingSpeed; }
             set { movingSpeed = value; }
         }
