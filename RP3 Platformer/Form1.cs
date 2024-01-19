@@ -485,7 +485,7 @@ namespace RP3_Platformer
         private void SetRightChecker()
         {
             rightChecker.Top = pictureBoxPlayer.Top - 4;
-            rightChecker.Left = pictureBoxPlayer.Left + pictureBoxPlayer.Width + 2;
+            rightChecker.Left = pictureBoxPlayer.Left + pictureBoxPlayer.Width + 4;
         }
 
         /// <summary>

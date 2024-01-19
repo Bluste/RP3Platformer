@@ -118,6 +118,10 @@ namespace RP3_Platformer
             this.mushroom1 = new System.Windows.Forms.PictureBox();
             this.brickBoxMushroom = new System.Windows.Forms.PictureBox();
             this.mushroomlabel = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin4)).BeginInit();
@@ -202,6 +206,10 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.mushroom1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brickBoxMushroom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mushroomlabel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             //
             // labelLives
@@ -1396,6 +1404,50 @@ namespace RP3_Platformer
             this.mushroomlabel.Tag = "mushroomlabel";
             this.mushroomlabel.Visible = false;
             //
+            // pictureBox1
+            //
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Location = new System.Drawing.Point(977, -90);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(10, 391);
+            this.pictureBox1.TabIndex = 112;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "level1platform";
+            //
+            // pictureBox2
+            //
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Location = new System.Drawing.Point(-9, -84);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(10, 586);
+            this.pictureBox2.TabIndex = 113;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Tag = "level1platform";
+            //
+            // pictureBox3
+            //
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Location = new System.Drawing.Point(827, 381);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(10, 144);
+            this.pictureBox3.TabIndex = 114;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Tag = "level1platform";
+            //
+            // pictureBox4
+            //
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Location = new System.Drawing.Point(903, 294);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(92, 10);
+            this.pictureBox4.TabIndex = 115;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Tag = "level1platform";
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1404,6 +1456,10 @@ namespace RP3_Platformer
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(981, 553);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.mushroomlabel);
             this.Controls.Add(this.brickBoxMushroom);
             this.Controls.Add(this.mushroom1);
@@ -1583,6 +1639,10 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.mushroom1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.brickBoxMushroom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mushroomlabel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1677,5 +1737,9 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox mushroom1;
         private System.Windows.Forms.PictureBox brickBoxMushroom;
         private System.Windows.Forms.PictureBox mushroomlabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
