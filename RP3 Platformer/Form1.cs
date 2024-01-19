@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,11 +59,14 @@ namespace RP3_Platformer
         //int turtlespeed3 = 3;
         //int turtlespeed4 = 3;
 
+        int previousLocation = 0;
+
         int plantspeed1 = 2;
         int plantspeed2 = 2;
 
         bool cooldown = false;
         bool shieldOn = false;
+        bool mushOn = false;
 
         bool plantmover1 = false;
         bool plantmover2 = false;
@@ -71,6 +75,7 @@ namespace RP3_Platformer
 
         int flowerover = 0;
         int shieldover = 0;
+        int mushroomover = 0;
 
         //Level 2 settings
         int level2PlayerXPosition = 40;
@@ -104,7 +109,7 @@ namespace RP3_Platformer
 
             ShieldAdvancement();
 
-            ShieldProtection();
+            MushroomAdvancement();
 
             HandleCollisions();
 
@@ -189,6 +194,8 @@ namespace RP3_Platformer
             shield1.SendToBack();
             shield1.Visible = false;
             realShield1.SendToBack();
+            mushroom1.SendToBack();
+            mushroom1.Visible = false;
 
             //inicijalziramo turtlePictureBoxes
             for (int i = 0; i < 4; i++)
@@ -303,8 +310,6 @@ namespace RP3_Platformer
 
             Controls.Add(turtleStopper_R);
             Controls.Add(turtleStopper_L);
-
-            //MoveTurtles(turtlePictureBox, turtleStopper_R, turtleStopper_L, turtleNumber);
 
         }
 
@@ -447,6 +452,12 @@ namespace RP3_Platformer
         {
             labelScore.Text = "Score: " + player.Score;
             labelLives.Text = "Lives: " + player.Lives;
+            if (cooldown || shieldOn) cooldownlabel.Visible = true;
+            else cooldownlabel.Visible = false;
+            if (mushOn) mushroomlabel.Visible = true;
+            else mushroomlabel.Visible = false;
+            if (player.JumpingOnce) Console.WriteLine("skok");
+            else Console.WriteLine("nope");
         }
         /// <summary>
         /// Postavlja groundChecker koji disable-a gravitaciju ako je player na platformi, rijesen problem titranja
@@ -584,32 +595,12 @@ namespace RP3_Platformer
                     turtlespeed[i] *= (-1);
                 }
             }
-            /*pictureBoxEnemyTurtle1.Left += turtlespeed[0];
-            if (pictureBoxEnemyTurtle1.Bounds.IntersectsWith(turtleStopper1_R.Bounds) || pictureBoxEnemyTurtle1.Bounds.IntersectsWith(turtleStopper1_L.Bounds))
-            {
-                turtlespeed[0] *= (-1);
-            }
-            pictureBoxEnemyTurtle2.Left += turtlespeed[1];
-            if (pictureBoxEnemyTurtle2.Bounds.IntersectsWith(turtleStopper2_R.Bounds) || pictureBoxEnemyTurtle2.Bounds.IntersectsWith(turtleStopper2_L.Bounds))
-            {
-                turtlespeed[1] *= (-1);
-            }
-            pictureBoxEnemyTurtle3.Left += turtlespeed[2];
-            if (pictureBoxEnemyTurtle3.Bounds.IntersectsWith(turtleStopper3_R.Bounds) || pictureBoxEnemyTurtle3.Bounds.IntersectsWith(turtleStopper3_L.Bounds))
-            {
-                turtlespeed[2] *= (-1);
-            }
-            pictureBoxEnemyTurtle4.Left += turtlespeed[3];
-            if (pictureBoxEnemyTurtle4.Bounds.IntersectsWith(turtleStopper4_R.Bounds) || pictureBoxEnemyTurtle4.Bounds.IntersectsWith(turtleStopper4_L.Bounds))
-            {
-                turtlespeed[3] *= (-1);
-            }*/
         }
 
         /// <summary>
         /// Pomiče biljke
         /// </summary>
-        private void MovePlants()        //jos treba biljke move behind ili tak nekak
+        private void MovePlants()
         {
             if (!plantmover1) pictureBoxEnemyPlant1.Top += plantspeed1;
             if (pictureBoxEnemyPlant1.Bounds.IntersectsWith(plantStopper1_D.Bounds) || pictureBoxEnemyPlant1.Bounds.IntersectsWith(plantStopper1_U.Bounds))
@@ -707,7 +698,7 @@ namespace RP3_Platformer
                             //animation stops. treba li?
                             //animationTimer.Stop();
                         }
-                        if ((string)control.Tag == "level1Enemy" || (string)control.Tag == "level2Enemy" || (string)control.Tag == "level3Enemy")
+                        /*if ((string)control.Tag == "level1Enemy" || (string)control.Tag == "level2Enemy" || (string)control.Tag == "level3Enemy")
                         {
                             if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !shieldOn)
                             {
@@ -718,10 +709,20 @@ namespace RP3_Platformer
                                     isGameOver = true;
                                 }
                             }
-                        }
+                        }*/
                     }
                     if ((string)control.Tag == "level1EnemyTurtle" || (string)control.Tag == "level2EnemyTurtle" || (string)control.Tag == "level3EnemyTurtle")
                     {
+                        if (groundChecker.Bounds.IntersectsWith(control.Bounds) && control.Visible == true &&
+                            pictureBoxPlayer.Location.Y > previousLocation) // ubijanje kornjace ako se na nju skoci
+                        {
+                            if (groundChecker.Bounds.Bottom - control.Bounds.Top < 5 &&
+                                groundChecker.Bounds.Right - control.Bounds.Right > -20 &&
+                                groundChecker.Bounds.Left - control.Bounds.Left < 20)
+                            {
+                                control.Visible = false;
+                            }
+                        }
                         if (pictureBoxPlayer.Bounds.IntersectsWith(control.Bounds) && control.Visible == true && !cooldown && !shieldOn)
                         {
                             player.Lives -= 1;
@@ -768,6 +769,7 @@ namespace RP3_Platformer
                     }
                 }
             }
+            previousLocation = pictureBoxPlayer.Location.Y;
         }
 
 
@@ -842,8 +844,7 @@ namespace RP3_Platformer
         private void ShieldAdvancement()
         {
             if (ceilingChecker.Bounds.IntersectsWith(brickBoxShield.Bounds) &&
-                shield1.Visible == false && shieldover == 0
-                )  //aktivacija štita
+                shield1.Visible == false && shieldover == 0)  //aktivacija štita
             {
                 shield1.Visible = true;
                 while (shield1.Bounds.IntersectsWith(brickBoxShield.Bounds))
@@ -868,13 +869,7 @@ namespace RP3_Platformer
                 };
                 cooldownTimer.Start();
             }
-        }
 
-        /// <summary>
-        /// implementira rad štita
-        /// </summary>
-        private void ShieldProtection()
-        {
             if (shieldOn == true)
             {
                 realShield1.Visible = true;
@@ -884,6 +879,45 @@ namespace RP3_Platformer
             else
             {
                 realShield1.Visible = false;
+            }
+        }
+
+        private void MushroomAdvancement()
+        {
+            if (ceilingChecker.Bounds.IntersectsWith(brickBoxMushroom.Bounds) &&
+                mushroom1.Visible == false && mushroomover == 0)  //aktivacija gljive
+            {
+                mushroom1.Visible = true;
+                while (mushroom1.Bounds.IntersectsWith(brickBoxMushroom.Bounds))
+                {
+                    mushroom1.Top -= 1;
+                }
+            }
+
+            if (pictureBoxPlayer.Bounds.IntersectsWith(mushroom1.Bounds) && mushroom1.Visible == true)   //skupljanje gljive
+            {
+                mushroom1.Visible = false;
+                mushroomover = 1;
+
+                mushOn = true;
+                Timer cooldownTimer = new Timer();
+                cooldownTimer.Interval = 10000;
+                cooldownTimer.Tick += (sender, e) =>
+                {
+                    mushOn = false;
+                    cooldownTimer.Stop();
+                    cooldownTimer.Dispose();
+                };
+                cooldownTimer.Start();
+            }
+
+            if (mushOn == true)
+            {
+                player.MovingSpeed = 10;
+            }
+            else
+            {
+                player.MovingSpeed = 5;
             }
         }
 

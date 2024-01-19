@@ -114,6 +114,10 @@ namespace RP3_Platformer
             this.flower1 = new System.Windows.Forms.PictureBox();
             this.shield1 = new System.Windows.Forms.PictureBox();
             this.realShield1 = new System.Windows.Forms.PictureBox();
+            this.cooldownlabel = new System.Windows.Forms.PictureBox();
+            this.mushroom1 = new System.Windows.Forms.PictureBox();
+            this.brickBoxMushroom = new System.Windows.Forms.PictureBox();
+            this.mushroomlabel = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoin4)).BeginInit();
@@ -194,6 +198,10 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.flower1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shield1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.realShield1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cooldownlabel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mushroom1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brickBoxMushroom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mushroomlabel)).BeginInit();
             this.SuspendLayout();
             //
             // labelLives
@@ -1169,7 +1177,7 @@ namespace RP3_Platformer
             //
             this.brickBoxShield.BackColor = System.Drawing.Color.Transparent;
             this.brickBoxShield.Image = global::RP3_Platformer.Properties.Resources.brick;
-            this.brickBoxShield.Location = new System.Drawing.Point(226, 390);
+            this.brickBoxShield.Location = new System.Drawing.Point(195, 390);
             this.brickBoxShield.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.brickBoxShield.Name = "brickBoxShield";
             this.brickBoxShield.Size = new System.Drawing.Size(31, 30);
@@ -1308,7 +1316,7 @@ namespace RP3_Platformer
             //
             this.shield1.BackColor = System.Drawing.Color.Transparent;
             this.shield1.Image = global::RP3_Platformer.Properties.Resources.shield5;
-            this.shield1.Location = new System.Drawing.Point(227, 392);
+            this.shield1.Location = new System.Drawing.Point(196, 392);
             this.shield1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.shield1.Name = "shield1";
             this.shield1.Size = new System.Drawing.Size(29, 27);
@@ -1333,6 +1341,61 @@ namespace RP3_Platformer
             this.realShield1.Tag = "shield";
             this.realShield1.Visible = false;
             //
+            // cooldownlabel
+            //
+            this.cooldownlabel.BackColor = System.Drawing.Color.Transparent;
+            this.cooldownlabel.Image = global::RP3_Platformer.Properties.Resources.shield5;
+            this.cooldownlabel.Location = new System.Drawing.Point(18, 46);
+            this.cooldownlabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cooldownlabel.Name = "cooldownlabel";
+            this.cooldownlabel.Size = new System.Drawing.Size(29, 27);
+            this.cooldownlabel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.cooldownlabel.TabIndex = 108;
+            this.cooldownlabel.TabStop = false;
+            this.cooldownlabel.Tag = "cooldownlabel";
+            this.cooldownlabel.Visible = false;
+            //
+            // mushroom1
+            //
+            this.mushroom1.BackColor = System.Drawing.Color.Transparent;
+            this.mushroom1.Image = global::RP3_Platformer.Properties.Resources.mush6;
+            this.mushroom1.Location = new System.Drawing.Point(565, 27);
+            this.mushroom1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mushroom1.Name = "mushroom1";
+            this.mushroom1.Size = new System.Drawing.Size(29, 27);
+            this.mushroom1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mushroom1.TabIndex = 109;
+            this.mushroom1.TabStop = false;
+            this.mushroom1.Tag = "level1mushroom";
+            this.mushroom1.Visible = false;
+            //
+            // brickBoxMushroom
+            //
+            this.brickBoxMushroom.BackColor = System.Drawing.Color.Transparent;
+            this.brickBoxMushroom.Image = global::RP3_Platformer.Properties.Resources.brick;
+            this.brickBoxMushroom.Location = new System.Drawing.Point(565, 27);
+            this.brickBoxMushroom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.brickBoxMushroom.Name = "brickBoxMushroom";
+            this.brickBoxMushroom.Size = new System.Drawing.Size(31, 32);
+            this.brickBoxMushroom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.brickBoxMushroom.TabIndex = 110;
+            this.brickBoxMushroom.TabStop = false;
+            this.brickBoxMushroom.Tag = "level1brick";
+            //
+            // mushroomlabel
+            //
+            this.mushroomlabel.BackColor = System.Drawing.Color.Transparent;
+            this.mushroomlabel.Image = global::RP3_Platformer.Properties.Resources.mush6;
+            this.mushroomlabel.Location = new System.Drawing.Point(53, 46);
+            this.mushroomlabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mushroomlabel.Name = "mushroomlabel";
+            this.mushroomlabel.Size = new System.Drawing.Size(29, 27);
+            this.mushroomlabel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mushroomlabel.TabIndex = 111;
+            this.mushroomlabel.TabStop = false;
+            this.mushroomlabel.Tag = "mushroomlabel";
+            this.mushroomlabel.Visible = false;
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1341,6 +1404,10 @@ namespace RP3_Platformer
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(981, 553);
+            this.Controls.Add(this.mushroomlabel);
+            this.Controls.Add(this.brickBoxMushroom);
+            this.Controls.Add(this.mushroom1);
+            this.Controls.Add(this.cooldownlabel);
             this.Controls.Add(this.realShield1);
             this.Controls.Add(this.shield1);
             this.Controls.Add(this.flower1);
@@ -1512,6 +1579,10 @@ namespace RP3_Platformer
             ((System.ComponentModel.ISupportInitialize)(this.flower1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shield1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.realShield1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cooldownlabel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mushroom1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brickBoxMushroom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mushroomlabel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1602,5 +1673,9 @@ namespace RP3_Platformer
         private System.Windows.Forms.PictureBox flower1;
         private System.Windows.Forms.PictureBox shield1;
         private System.Windows.Forms.PictureBox realShield1;
+        private System.Windows.Forms.PictureBox cooldownlabel;
+        private System.Windows.Forms.PictureBox mushroom1;
+        private System.Windows.Forms.PictureBox brickBoxMushroom;
+        private System.Windows.Forms.PictureBox mushroomlabel;
     }
 }
